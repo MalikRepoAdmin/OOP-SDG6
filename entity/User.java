@@ -1,4 +1,5 @@
-class User {
+package entity;
+public class User {
 
     public int idUser;
     public String nama;
@@ -59,33 +60,5 @@ class User {
 
     public String mengambilFotoProfil() {
         return fotoProfil;
-    }
-}
-
-public class UserTest {
-    public static void main(String[] args) {
-
-        User u = new User();
-
-        u.mengisiData(
-                1,
-                "Angelis Nasta Nadia",
-                "angelynas@gmail.com",
-                "12345",
-                "12-08-2005",
-                "Mahasiswa",
-                "Peduli lingkungan",
-                "Jakarta",
-                "foto.jpg");
-
-        System.out.println("ID User: " + u.mengambilIdUser());
-        System.out.println("Nama: " + u.mengambilNama());
-        System.out.println("Email: " + u.mengambilEmail());
-        System.out.println("Password: " + u.mengambilPassword());
-        System.out.println("Tanggal Lahir: " + u.mengambilTanggalLahir());
-        System.out.println("Pekerjaan: " + u.mengambilPekerjaan());
-        System.out.println("Bio: " + u.mengambilBio());
-        System.out.println("Domisili: " + u.mengambilDomisili());
-        System.out.println("Foto Profil: " + u.mengambilFotoProfil());
     }
 }

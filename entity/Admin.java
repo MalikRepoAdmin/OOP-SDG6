@@ -1,3 +1,5 @@
+package entity;
+
 public class Admin {
     String id_admin, email;
     String password;
@@ -15,18 +17,9 @@ public class Admin {
     }
 
     public void showdata(){
+        System.out.print("\n\n");
         System.out.println("ID admin : " +id_admin);
         System.out.println("Email : " +email);
         System.out.println("Password : " +password);
-    }
-
-    public static void main (String[] args){
-        Admin adminobj = new Admin();
-        
-        adminobj.set_id("A001");
-        adminobj.set_email("admin123@gmail.com");
-        adminobj.set_pass("admin123");
-
-        adminobj.showdata();
     }
 }

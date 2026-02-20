@@ -1,3 +1,4 @@
+package entity;
 
 public class Sungai {
 
@@ -27,17 +28,6 @@ public class Sungai {
                 + "Lokasi Sungai : " + lokasi + "\n"
                 + "Status Sungai : " + status
         );
-    }
-
-    public static void main(String[] args) {
-        Sungai sungaiobj = new Sungai();
-
-        sungaiobj.setnama("citarum");
-        sungaiobj.setLokasi("jawa Barat");
-        sungaiobj.getId(1);
-        sungaiobj.setStatus("BERSIH");
-        sungaiobj.showdata();
-
     }
 
 }
