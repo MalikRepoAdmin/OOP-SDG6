@@ -21,9 +21,10 @@ public class Main {
         Database newDatabase = new DatabaseMock();
 
         // Instantiate NewComment
-        AbstractComment newComment = new NewComment();
+        AbstractComment newComment = new NewComment(newDatabase);
         newComment.addComment("Hello, World!", "254311011");
-        newComment.sendComment(newDatabase);
+        newComment.sendComment();
+        newComment.displaySendedComment();
         newComment.displayComment();
         newComment.displayCount();
 
@@ -33,7 +34,7 @@ public class Main {
         AbstractComment oldComment = new OldComment(newDatabase, commentId);
         oldComment.displayComment();
         oldComment.updateComment("Good Night, World...");
-        oldComment.sendComment(newDatabase);
+        oldComment.sendComment();
         oldComment.displaySendedComment();
 
 

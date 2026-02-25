@@ -14,9 +14,9 @@ public abstract class AbstractComment implements Comment{
     
     protected String userId;
 
-    public void displayCount(){
+    public final void displayCount(){
         System.out.println("Comment Count: "+commentCount+"\n\n");
     }
 
-    public void displaySendedComment(){};
+    public abstract void displaySendedComment();
 }
