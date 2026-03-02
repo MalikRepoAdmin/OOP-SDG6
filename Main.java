@@ -54,13 +54,9 @@ public class Main {
             OWNERSHIP: zahrah888
         */
 
-        Admin adminobj = new Admin();
-        
-        adminobj.set_id("A001");
-        adminobj.set_email("zzzzzhrrr@gmail.com");
-        adminobj.set_pass("admin123");
+        Admin adminobj = new Admin("244311060");
 
-        adminobj.showdata();
+        adminobj.showData();
 
         /*
             OWNERSHIP: AngelisNadia
