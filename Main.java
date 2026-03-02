@@ -1,11 +1,11 @@
 import database.Database;
 import database.impl.DatabaseMock;
 import entity.AbstractComment;
+import entity.Admin;
+import entity.Sungai;
+import entity.User;
 import entity.impl.NewComment;
 import entity.impl.OldComment;
-import entity.Sungai;
-import entity.Admin;
-import entity.User;
 
 /// Entry Point
 public class Main {
@@ -57,7 +57,7 @@ public class Main {
         Admin adminobj = new Admin();
         
         adminobj.set_id("A001");
-        adminobj.set_email("admin123@gmail.com");
+        adminobj.set_email("zzzzzhrrr@gmail.com");
         adminobj.set_pass("admin123");
 
         adminobj.showdata();
