@@ -1,3 +1,5 @@
+package entity;
+
 public class Admin {
     private String idAdmin;
     private String email = "zzzzzhrrr@gmail.com";

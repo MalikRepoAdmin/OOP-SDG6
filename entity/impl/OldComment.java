@@ -43,7 +43,7 @@ public class OldComment  extends AbstractComment {
     }
 
     @Override
-    public void sendComment(Database database){
+    public void sendComment(){
         System.out.println("Sending Updated Comment...");
         
         database.updateTo_komentar(String.valueOf(super.commentId), super.commentContent, super.commentModifiedDate);

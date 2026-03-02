@@ -1,11 +1,20 @@
 package entity.impl;
 
 import java.time.LocalDate;
+import java.util.Map;
+
 import database.Database;
 import entity.AbstractComment;
 
 
 public class NewComment extends AbstractComment {
+    private Database database;
+
+    // Constructor 
+    public NewComment(Database database){
+        this.database = database;
+    }
+
     @Deprecated
     @Override
     public void updateComment(String comment){}
@@ -27,7 +36,25 @@ public class NewComment extends AbstractComment {
     }
 
     @Override
-    public void sendComment(Database database){
+    public void displaySendedComment(){
+        String commentIdString = String.valueOf(commentId);
+        Map<String, Object> commentColumn = database.getOneComment(commentIdString);
+
+        System.out.printf("%n"+ "Sended Comment: %n" +
+            "ID User: %s %n"+
+            "ID Comment: %s %n"+
+            "Comment: %s %n"+
+            "Created Date: %s %n"+
+            "Modified Date: %s %n %n",
+            commentColumn.get("id_user"),
+            commentColumn.get("id_komentar"),
+            commentColumn.get("isi_komentar"),
+            commentColumn.get("tgl_dibuat"),
+            commentColumn.get("tgl_modified"));
+    }
+
+    @Override
+    public void sendComment(){
         System.out.println("Sending New Comment...");
         
         database.createTo_komentar(super.userId, super.commentContent, super.commentCreatedDate);

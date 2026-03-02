@@ -1,9 +1,8 @@
 package entity;
-import database.Database;
 
 /// Interface Untuk menambah jenis comment baru(sub-class)
 public interface Comment {
-    void sendComment(Database database);
+    void sendComment();
     void displayComment();
     int getCommentID();
 
