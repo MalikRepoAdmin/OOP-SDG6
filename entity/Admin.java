@@ -10,7 +10,7 @@ public class Admin {
     }
 
     public void showData() {
-        System.out.println("ID Admin : " + idAdmin);
+        System.out.println("\n\nID Admin : " + idAdmin);
         System.out.println("Email    : " + email);
     }
 }

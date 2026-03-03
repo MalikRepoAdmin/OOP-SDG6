@@ -1,9 +1,13 @@
+import java.time.LocalDate;
+
 import database.Database;
 import database.impl.DatabaseMock;
 import entity.AbstractComment;
 import entity.Admin;
+import entity.DataBaru;
 import entity.Sungai;
 import entity.User;
+import entity.VerifikasiEmail;
 import entity.impl.NewComment;
 import entity.impl.OldComment;
 
@@ -85,6 +89,11 @@ public class Main {
         System.out.println("Bio: " + u.mengambilBio());
         System.out.println("Domisili: " + u.mengambilDomisili());
         System.out.println("Foto Profil: " + u.mengambilFotoProfil());
+
+
+        VerifikasiEmail vE = new VerifikasiEmail(2, LocalDate.now().toString(), commentId, commentId);
+
+        vE.tampilkanData();
 
     }
 
