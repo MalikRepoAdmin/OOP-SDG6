@@ -1,26 +1,27 @@
-import java.time.LocalDate;
 
 import database.Database;
 import database.impl.DatabaseMock;
 import entity.AbstractComment;
 import entity.Admin;
-import entity.DataBaru;
+import entity.KategoriSungai;
+import entity.StatusSungai;
 import entity.Sungai;
 import entity.User;
 import entity.VerifikasiEmail;
 import entity.impl.NewComment;
 import entity.impl.OldComment;
+import java.time.LocalDate;
 
 /// Entry Point
 public class Main {
+
     public static void main(String[] args) {
         System.out.println("Ini adalah program untuk test project OOP kami!\n\n");
 
 
         /*
             OWNERSHIP: MalikRepoAdmin
-        */
-
+         */
         // Instantiate DatabaseMock
         Database newDatabase = new DatabaseMock();
 
@@ -44,28 +45,31 @@ public class Main {
 
         /*
             OWNERSHIP: raditCDlk
-        */
-
+         */
         Sungai sungaiobj = new Sungai();
 
-        sungaiobj.setnama("citarum");
+        sungaiobj.setNama("citarum");
         sungaiobj.setLokasi("jawa Barat");
-        sungaiobj.getId(1);
+        sungaiobj.setId(1);
         sungaiobj.setStatus("BERSIH");
-        sungaiobj.showdata();
+
+        KategoriSungai kategoriSungai = new KategoriSungai();
+        kategoriSungai.kategori("layak pakai");
+
+        StatusSungai statusSungai = new StatusSungai();
+        statusSungai.setStatus("sungai Bersih");
+
 
         /*
             OWNERSHIP: zahrah888
-        */
-
+         */
         Admin adminobj = new Admin("244311060");
 
         adminobj.showData();
 
         /*
             OWNERSHIP: AngelisNadia
-        */
-
+         */
         User u = new User();
 
         u.mengisiData(
@@ -89,7 +93,6 @@ public class Main {
         System.out.println("Bio: " + u.mengambilBio());
         System.out.println("Domisili: " + u.mengambilDomisili());
         System.out.println("Foto Profil: " + u.mengambilFotoProfil());
-
 
         VerifikasiEmail vE = new VerifikasiEmail(2, LocalDate.now().toString(), commentId, commentId);
 
