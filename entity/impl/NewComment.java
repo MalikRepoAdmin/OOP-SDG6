@@ -5,9 +5,11 @@ import java.util.Map;
 
 import database.Database;
 import entity.AbstractComment;
+import entity.ICommentCreator;
 
-
-public class NewComment extends AbstractComment {
+// Single Resposibility  Principle 
+// Dependency Inversion Principle
+public class NewComment extends AbstractComment implements ICommentCreator {
     private Database database;
 
     // Constructor 
@@ -15,10 +17,7 @@ public class NewComment extends AbstractComment {
         this.database = database;
     }
 
-    @Deprecated
-    @Override
-    public void updateComment(String comment){}
-
+    // Interface Segregation Principle: FIXED
     @Override
     public void addComment(String comment,String userId){
         super.commentId = commentCount + 1;
@@ -35,6 +34,7 @@ public class NewComment extends AbstractComment {
         return nowDate;
     }
 
+    // Liskov Subtitution Principle
     @Override
     public void displaySendedComment(){
         String commentIdString = String.valueOf(commentId);

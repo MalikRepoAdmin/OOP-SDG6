@@ -3,9 +3,13 @@ package entity.impl;
 import java.time.LocalDate;
 import database.Database;
 import entity.AbstractComment;
+import entity.ICommentUpdater;
+
 import java.util.Map;
 
-public class OldComment  extends AbstractComment {
+// Single Responsibility Principle
+// Dependency Inversion Principle
+public class OldComment  extends AbstractComment implements ICommentUpdater{
     private static Map<String, Object> fetchedComment;
     private Database database;
 
@@ -21,16 +25,9 @@ public class OldComment  extends AbstractComment {
         super.commentModifiedDate = null;
     }
 
-
-    @Deprecated
+    // Interface Segregation Principle: FIXED
+    // Unused Method Removed, and Remove the "@Deprecated" Decorator
     @Override
-    public void addComment(String comment,String userId){}
-
-    /** 
-     * @deprecated use Constructor instead
-     */
-    @Override
-    @Deprecated
     public void updateComment(String comment){
         super.commentContent = comment;
         super.commentModifiedDate = addDate();
@@ -49,6 +46,7 @@ public class OldComment  extends AbstractComment {
         database.updateTo_komentar(String.valueOf(super.commentId), super.commentContent, super.commentModifiedDate);
     }
 
+    // Lisskov Subtitution Principle
     @Override
     public void displaySendedComment(){
         String commentIdString = String.valueOf(commentId);
