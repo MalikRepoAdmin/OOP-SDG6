@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import database.Database;
 
-
+// Open/Closed Principle
 //TODO: Modify query based on mysql database schema we will create
 /// Class untuk initialisasi Database MySQL
 public class DatabaseMysql implements Database{
