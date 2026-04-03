@@ -2,28 +2,46 @@ package entity;
 
 public class Sungai { // parent class
 
-    int id;
-    String nama_sungai, lokasi;
+    private int id;
+    private String nama_sungai;
+    private String lokasi;
+    private String ketegori;
+    private String status;
 
-    public void setNama(String nama_sungai) {
-        this.nama_sungai = nama_sungai;
-        System.out.println("Nama Sungai : " + nama_sungai);
+   //getter&setter
+    public int getId() {
+        return id;
     }
-
     public void setId(int id) {
         this.id = id;
-        System.out.println("ID Sungai : " + id);
     }
 
-    public void setLokasi(String lokasi) {
-        this.lokasi = lokasi;
-        System.out.println("Lokasi Sungai : " + lokasi);
+    public String getNama(){
+        return nama_sungai;
+    }
+    public String setNama(String nama_sungai) {
+        return this.nama_sungai = nama_sungai;
     }
 
-    public void kategori(String kategori) {
+    public String getLokasi(){
+        return lokasi;
+    }
+    public String setLokasi(String lokasi) {
+        return this.lokasi = lokasi;
     }
 
-    public void setStatus(String status) {
+    public String getKategori() {
+        return ketegori;
+    }
+    public String setKategori(String ketegori) {
+        return this.ketegori = ketegori;
+    }
+
+    public String getStatus() {
+        return status;
+    }    
+    public String setStatus(String status) {
+        return this.status = status;
     }
 
 }
