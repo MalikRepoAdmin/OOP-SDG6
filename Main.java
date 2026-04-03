@@ -48,17 +48,17 @@ public class Main {
          */
         Sungai sungaiobj = new Sungai();
 
+        sungaiobj.setId(1);
         sungaiobj.setNama("citarum");
         sungaiobj.setLokasi("jawa Barat");
-        sungaiobj.setId(1);
+        sungaiobj.setKategori("layak pakai");
         sungaiobj.setStatus("BERSIH");
 
-        KategoriSungai kategoriSungai = new KategoriSungai();
-        kategoriSungai.kategori("layak pakai");
-
-        StatusSungai statusSungai = new StatusSungai();
-        statusSungai.setStatus("sungai Bersih");
-
+        System.out.println("ID Sungai: " + sungaiobj.getId());
+        System.out.println("Nama Sungai: " + sungaiobj.getNama());
+        System.out.println("Lokasi Sungai: " + sungaiobj.getLokasi());
+        System.out.println("Kategori Sungai: " + sungaiobj.getKategori());
+        System.out.println("Status Sungai: " + sungaiobj.getStatus());
 
         /*
             OWNERSHIP: zahrah888
