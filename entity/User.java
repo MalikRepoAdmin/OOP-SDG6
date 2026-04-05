@@ -1,64 +1,111 @@
 package entity;
+
 public class User {
+    private int idUser;
+    private String nama;
+    private String email;
+    private String password;
+    private String tanggalLahir;
+    private String pekerjaan;
+    private String bio;
+    private String domisili;
+    private String fotoProfil;
 
-    public int idUser;
-    public String nama;
-    public String email;
-    public String password;
-    public String tanggalLahir;
-    public String pekerjaan;
-    public String bio;
-    public String domisili;
-    public String fotoProfil;
-
-    public void mengisiData(int iduser, String namalengkap, String mail, String pass,
-            String tgllahir, String kerja, String biodata,
-            String alamat, String foto) {
-
-        idUser = iduser;
-        nama = namalengkap;
-        email = mail;
-        password = pass;
-        tanggalLahir = tgllahir;
-        pekerjaan = kerja;
-        bio = biodata;
-        domisili = alamat;
-        fotoProfil = foto;
+    public User(int idUser, String nama, String email, String password,
+                String tanggalLahir, String pekerjaan, String bio,
+                String domisili, String fotoProfil) {
+        this.idUser = idUser;
+        this.nama = nama;
+        this.email = email;
+        this.password = password;
+        this.tanggalLahir = tanggalLahir;
+        this.pekerjaan = pekerjaan;
+        this.bio = bio;
+        this.domisili = domisili;
+        this.fotoProfil = fotoProfil;
     }
 
-    public int mengambilIdUser() {
+    // Getter dan Setter untuk tiap atribut (Encapsulation)
+    public int getIdUser() {
         return idUser;
     }
 
-    public String mengambilNama() {
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getNama() {
         return nama;
     }
 
-    public String mengambilEmail() {
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getEmail() {
         return email;
     }
 
-    public String mengambilPassword() {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
         return password;
     }
 
-    public String mengambilTanggalLahir() {
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getTanggalLahir() {
         return tanggalLahir;
     }
 
-    public String mengambilPekerjaan() {
+    public void setTanggalLahir(String tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
+    }
+
+    public String getPekerjaan() {
         return pekerjaan;
     }
 
-    public String mengambilBio() {
+    public void setPekerjaan(String pekerjaan) {
+        this.pekerjaan = pekerjaan;
+    }
+
+    public String getBio() {
         return bio;
     }
 
-    public String mengambilDomisili() {
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getDomisili() {
         return domisili;
     }
 
-    public String mengambilFotoProfil() {
+    public void setDomisili(String domisili) {
+        this.domisili = domisili;
+    }
+
+    public String getFotoProfil() {
         return fotoProfil;
+    }
+
+    public void setFotoProfil(String fotoProfil) {
+        this.fotoProfil = fotoProfil;
+    }
+
+    public void showData() {
+        System.out.println("ID User       : " + idUser);
+        System.out.println("Nama          : " + nama);
+        System.out.println("Email         : " + email);
+        System.out.println("Tanggal Lahir : " + tanggalLahir);
+        System.out.println("Pekerjaan     : " + pekerjaan);
+        System.out.println("Bio           : " + bio);
+        System.out.println("Domisili      : " + domisili);
+        System.out.println("Foto Profil   : " + fotoProfil);
     }
 }
