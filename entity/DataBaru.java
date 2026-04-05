@@ -1,22 +1,19 @@
 package entity;
 
-public class DataBaru extends Admin {
+public class DataBaru {
     private String idDataBaru;
     private String tglData;
     private String hasilData;
     private String statusData;
 
     public DataBaru(String idAdmin, String idDataBaru, String tglData, String hasilData, String statusData) {
-        super(idAdmin);
         this.idDataBaru = idDataBaru;
         this.tglData = tglData;
         this.hasilData = hasilData;
         this.statusData = statusData;
     }
 
-    @Override
     public void showData() {
-        super.showData();
         System.out.println("Laporan Pemantauan Sungai");
         System.out.println("No. Laporan  : " + idDataBaru);
         System.out.println("Waktu pengecekan   : " + tglData);
