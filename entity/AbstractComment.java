@@ -2,7 +2,8 @@ package entity;
 
 import java.time.LocalDate;
 
-
+// Open/Closed Principle
+// Liskov Subtitution Principle
 /// Class Comment (Parent) : Di Instatiate di Class CliApp 
 public abstract class AbstractComment implements Comment{
     protected static int commentCount = 0;

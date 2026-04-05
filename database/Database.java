@@ -4,8 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-
-/// Interface untuk menambah DBMS baru
+// Open/Closed Principle
+// Dependency Inversion Principle
+/// Interface for adding new Database Implementation without modify Dependency Injection Code
 public interface Database {
     void closeConnection();
 

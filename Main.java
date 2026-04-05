@@ -1,7 +1,6 @@
 
 import database.Database;
 import database.impl.DatabaseMock;
-import entity.AbstractComment;
 import entity.Admin;
 import entity.DataBaru;
 import entity.KategoriSungai;
@@ -27,7 +26,7 @@ public class Main {
         Database newDatabase = new DatabaseMock();
 
         // Instantiate NewComment
-        AbstractComment newComment = new NewComment(newDatabase);
+        NewComment newComment = new NewComment(newDatabase);
         newComment.addComment("Hello, World!", "254311011");
         newComment.sendComment();
         newComment.displaySendedComment();
@@ -37,7 +36,7 @@ public class Main {
         String commentId = String.valueOf(newComment.getCommentID());
 
         // Instantiate OldComment
-        AbstractComment oldComment = new OldComment(newDatabase, commentId);
+        OldComment oldComment = new OldComment(newDatabase, commentId);
         oldComment.displayComment();
         oldComment.updateComment("Good Night, World...");
         oldComment.sendComment();

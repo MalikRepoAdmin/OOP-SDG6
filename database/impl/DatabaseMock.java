@@ -8,15 +8,17 @@ import java.util.Map;
 
 import database.Database;
 
+// Open/Closed Principle
+// All Properties Safely Encapsulated  
 public class DatabaseMock implements Database{
-    public static Map<Integer, HashMap<String, Object>> tbl_komentar = new HashMap<Integer, HashMap<String, Object>>();
+    private static Map<Integer, HashMap<String, Object>> tbl_komentar = new HashMap<Integer, HashMap<String, Object>>();
 
-    // String merepresentasikan Column
-    public String id_komentar = "id_komentar";
-    public String id_user = "id_user";
-    public String isi_komentar = "isi_komentar";
-    public String tgl_dibuat = "tgl_dibuat";
-    public String tgl_modified = "tgl_modified";
+    // Column Represented as String variable
+    private String id_komentar = "id_komentar";
+    private String id_user = "id_user";
+    private String isi_komentar = "isi_komentar";
+    private String tgl_dibuat = "tgl_dibuat";
+    private String tgl_modified = "tgl_modified";
 
 
     @Override
