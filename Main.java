@@ -63,7 +63,7 @@ public class Main {
         /*
             OWNERSHIP: zahrah888
          */
-        Admin adminobj = new Admin("244311060");
+        Admin adminobj = new Admin("ADM001");
 
         adminobj.showData();
 
