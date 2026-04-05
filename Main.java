@@ -66,7 +66,7 @@ public class Main {
          */
         Admin adminobj = new Admin("ADM001");
 
-        adminobj.showData();
+        adminobj.showDataAdmin();
 
         DataBaru dbobj = new DataBaru (
         adminobj.getIdAdmin(), 
@@ -82,31 +82,25 @@ public class Main {
         /*
             OWNERSHIP: AngelisNadia
          */
-        User u = new User();
+        User u = new User(1, "Angelis Nasta Nadia", "angelynas@gmail.com", 
+        "12345", "12-08-2005", "Mahasiswa", 
+        "Peduli lingkungan", "Jakarta", "foto.jpg");
 
-        u.mengisiData(
-                1,
-                "Angelis Nasta Nadia",
-                "angelynas@gmail.com",
-                "12345",
-                "12-08-2005",
-                "Mahasiswa",
-                "Peduli lingkungan",
-                "Jakarta",
-                "foto.jpg");
 
         System.out.print("\n\n");
-        System.out.println("ID User: " + u.mengambilIdUser());
-        System.out.println("Nama: " + u.mengambilNama());
-        System.out.println("Email: " + u.mengambilEmail());
-        System.out.println("Password: " + u.mengambilPassword());
-        System.out.println("Tanggal Lahir: " + u.mengambilTanggalLahir());
-        System.out.println("Pekerjaan: " + u.mengambilPekerjaan());
-        System.out.println("Bio: " + u.mengambilBio());
-        System.out.println("Domisili: " + u.mengambilDomisili());
-        System.out.println("Foto Profil: " + u.mengambilFotoProfil());
+        System.out.println("ID User: " + u.getIdUser());
+        System.out.println("Nama: " + u.getNama());
+        System.out.println("Email: " + u.getEmail());
+        System.out.println("Password: " + u.getPassword());
+        System.out.println("Tanggal Lahir: " + u.getTanggalLahir());
+        System.out.println("Pekerjaan: " + u.getPekerjaan());
+        System.out.println("Bio: " + u.getBio());
+        System.out.println("Domisili: " + u.getDomisili());
+        System.out.println("Foto Profil: " + u.getFotoProfil());
 
-        VerifikasiEmail vE = new VerifikasiEmail(2, LocalDate.now().toString(), commentId, commentId);
+        VerifikasiEmail vE = new VerifikasiEmail(1, "Angelis Nasta Nadia", "angelynas@gmail.com", 
+        "12345", "12-08-2005", "Mahasiswa", 
+        "Peduli lingkungan", "Jakarta", "foto.jpg", 1, "05-04-2026", "05-04-2026", "verified");
 
         vE.tampilkanData();
 
