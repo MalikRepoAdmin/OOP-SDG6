@@ -1,16 +1,18 @@
 package entity;
 
-public class Admin {
+public class Admin extends User {
     private String idAdmin;
-    private String email = "zzzzzhrrr@gmail.com";
-    private String password = "admin123";
 
     public Admin(String idAdmin) {
-        this.idAdmin = idAdmin;
+        this.idAdmin = ADM001;
+        this.email = "zzzzzhrrr@gmail.com";
+        this.password = "admriverX12";
+        this.nama = "Zahrah";
     }
 
-    public void showData() {
-        System.out.println("\n\nID Admin : " + idAdmin);
+    public void showDataAdmin() {
+        System.out.println("ID Admin : " + idAdmin);
         System.out.println("Email    : " + email);
+        System.out.println("Nama     : " + nama);
     }
 }
