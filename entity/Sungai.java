@@ -5,7 +5,7 @@ public class Sungai { // parent class
     private int id;
     private String nama_sungai;
     private String lokasi;
-    private String ketegori;
+    private String kategori;
     private String status;
 
    //getter&setter
@@ -19,29 +19,29 @@ public class Sungai { // parent class
     public String getNama(){
         return nama_sungai;
     }
-    public String setNama(String nama_sungai) {
-        return this.nama_sungai = nama_sungai;
+    public void setNama(String nama_sungai) {
+        this.nama_sungai = nama_sungai;
     }
 
     public String getLokasi(){
         return lokasi;
     }
-    public String setLokasi(String lokasi) {
-        return this.lokasi = lokasi;
+    public void setLokasi(String lokasi) {
+        this.lokasi = lokasi;
     }
 
     public String getKategori() {
-        return ketegori;
+        return kategori;
     }
-    public String setKategori(String ketegori) {
-        return this.ketegori = ketegori;
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
     }
 
     public String getStatus() {
         return status;
     }    
-    public String setStatus(String status) {
-        return this.status = status;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }
