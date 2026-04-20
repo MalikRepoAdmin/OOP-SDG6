@@ -4,8 +4,6 @@ import database.impl.DatabaseMock;
 import entity.AbstractComment;
 import entity.Admin;
 import entity.KategoriSungai;
-import entity.StatusSungai;
-import entity.Sungai;
 import entity.User;
 import entity.VerifikasiEmail;
 import entity.impl.NewComment;
@@ -46,7 +44,11 @@ public class Main {
         /*
             OWNERSHIP: raditCDlk
          */
-        Sungai sungaiobj = new Sungai();
+        KategoriSungai sungaiobj = new KategoriSungai();
+        
+            
+    
+        
 
         sungaiobj.setId(1);
         sungaiobj.setNama("citarum");
