@@ -46,10 +46,6 @@ public class Main {
          */
         KategoriSungai sungaiobj = new KategoriSungai();
         
-            
-    
-        
-
         sungaiobj.setId(1);
         sungaiobj.setNama("citarum");
         sungaiobj.setLokasi("jawa Barat");
