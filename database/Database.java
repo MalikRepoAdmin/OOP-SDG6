@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-// Open/Closed Principle
-// Dependency Inversion Principle
+/*  Polymorphism with Interface to decouple concrete class from dependant
+    Open/Closed Principle
+    Dependency Inversion Principle */
+
 /// Interface for adding new Database Implementation without modify Dependency Injection Code
 public interface Database {
     void closeConnection();
