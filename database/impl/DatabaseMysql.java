@@ -12,9 +12,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import database.Database;
 
-// Open/Closed Principle
-//TODO: Modify query based on mysql database schema we will create
-/// Class untuk initialisasi Database MySQL
+/*  Polymorphism implementation
+    Open/Closed Principle
+    TODO: Modify query based on mysql database schema we will create */
+
+/// Class for initialize MySQL Database Connection
 public class DatabaseMysql implements Database{
     private static Connection DB_CONNECTION = null;
 
