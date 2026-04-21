@@ -1,9 +1,25 @@
 package entity;
 
-public class StatusSungai extends Sungai { // child class 2
+public class StatusSungai extends Sungai implements Statusinterface {
 
-    public void tampilStatus() {
-        System.out.println("Status Sungai : " + getStatus());
+    private double ph;
+
+    public void setPh(double ph) {
+        this.ph = ph;
     }
 
+    public double getPh() {
+        return ph;
+    }
+
+    @Override
+    public void kualitasAir() {
+        if (ph < 7) {
+            System.out.println("Kualitas Air Sungai : Asam");
+        } else if (ph == 7) {
+            System.out.println("Kualitas Air Sungai : Netral");
+        } else {
+            System.out.println("Kualitas Air Sungai : Basa");
+        }
+    }
 }

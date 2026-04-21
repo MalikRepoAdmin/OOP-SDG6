@@ -1,17 +1,15 @@
 package entity;
 
-public class KategoriSungai extends Sungai implements Detailkategori { // child class 1
-
-    private String debit;
-    private String sumber;
+public class KategoriSungai extends Sungai implements KategoriInterface { // child class 1
 
     @Override
-    public void debitSungai() {
-        System.out.println("Debit Sungai : " + debit);
+    public void debitAir() {
+        System.out.println("Debit Air Sungai : " + getDebit());
     }
 
     @Override
-    public void sumberSungai() {
-        System.out.println("Sumber Sungai : " + sumber);
+    public void sumberAir() {
+        System.out.println("Sumber Air Sungai : " + getSumber());
     }
+
 }

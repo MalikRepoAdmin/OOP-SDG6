@@ -2,11 +2,13 @@ package entity;
 
 public abstract class Sungai { // parent class
 
-    private int id;
-    private String nama_sungai;
-    private String lokasi;
-    private String kategori;
-    private String status;
+    protected int id;
+    protected String nama_sungai;
+    protected String lokasi;
+    protected String kategori;
+    protected String status;
+    protected String sumber;
+    protected String debit;
 
     //getter&setter
     public int getId() {
@@ -49,4 +51,19 @@ public abstract class Sungai { // parent class
         this.status = status;
     }
 
+    public String getSumber() {
+        return sumber;
+    }
+
+    public void setSumber(String sumber) {
+        this.sumber = sumber;
+    }
+
+    public String getDebit() {
+        return debit;
+    }
+
+    public void setDebit(String debit) {
+        this.debit = debit;
+    }
 }

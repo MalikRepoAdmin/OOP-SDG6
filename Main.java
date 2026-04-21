@@ -4,6 +4,7 @@ import database.impl.DatabaseMock;
 import entity.AbstractComment;
 import entity.Admin;
 import entity.KategoriSungai;
+import entity.Sungai;
 import entity.User;
 import entity.VerifikasiEmail;
 import entity.impl.NewComment;
@@ -44,19 +45,29 @@ public class Main {
         /*
             OWNERSHIP: raditCDlk
          */
-        KategoriSungai sungaiobj = new KategoriSungai();
-        
+        Sungai sungaiobj = new KategoriSungai();
+        KategoriSungai kategoriSungaiObj = new KategoriSungai();
+        StatusSungai statusSungaiObj = new StatusSungai();
+
         sungaiobj.setId(1);
         sungaiobj.setNama("citarum");
         sungaiobj.setLokasi("jawa Barat");
-        sungaiobj.setKategori("layak pakai");
-        sungaiobj.setStatus("BERSIH");
+        sungaiobj.setKategori("C");
+        sungaiobj.setStatus("Baik");
+        kategoriSungaiObj.setSumber("Air hujan");
+        kategoriSungaiObj.setDebit("1000 liter/detik");
 
         System.out.println("ID Sungai: " + sungaiobj.getId());
         System.out.println("Nama Sungai: " + sungaiobj.getNama());
         System.out.println("Lokasi Sungai: " + sungaiobj.getLokasi());
+
         System.out.println("Kategori Sungai: " + sungaiobj.getKategori());
+        kategoriSungaiObj.debitAir();
+        kategoriSungaiObj.sumberAir();
+
         System.out.println("Status Sungai: " + sungaiobj.getStatus());
+        statusSungaiObj.setPh(6.5);
+        statusSungaiObj.kualitasAir();
 
         /*
             OWNERSHIP: zahrah888
