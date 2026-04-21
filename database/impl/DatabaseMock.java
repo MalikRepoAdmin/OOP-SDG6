@@ -8,8 +8,9 @@ import java.util.Map;
 
 import database.Database;
 
-// Open/Closed Principle
-// All Properties Safely Encapsulated  
+/*  Polymorphism implementation
+    Open/Closed Principle
+    All Properties Safely Encapsulated */ 
 public class DatabaseMock implements Database{
     private static Map<Integer, HashMap<String, Object>> tbl_komentar = new HashMap<Integer, HashMap<String, Object>>();
 

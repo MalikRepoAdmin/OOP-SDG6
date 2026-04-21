@@ -23,8 +23,12 @@ public class Main {
             OWNERSHIP: MalikRepoAdmin
          */
         // Instantiate DatabaseMock
+        // This Database instantiation is based on Interface type to decouple and demonstrate polymorphism
         Database newDatabase = new DatabaseMock();
 
+
+        // NewComment and OldComment constructor depends on interface type Database
+        // we can freely change the database instance into DatabaseMysql easily as a proof of polymorphism
         // Instantiate NewComment
         NewComment newComment = new NewComment(newDatabase);
         newComment.addComment("Hello, World!", "254311011");

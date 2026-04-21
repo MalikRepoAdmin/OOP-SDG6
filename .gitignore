@@ -1,2 +1,9 @@
 .env
+*.class
+bin
+.classpath
+.project
+*.bkp
+*.bak
+*.mwb
 .dockerignore
