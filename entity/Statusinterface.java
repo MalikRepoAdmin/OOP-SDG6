@@ -7,3 +7,4 @@ package entity;
 public interface Statusinterface {
     abstract void kualitasAir();
 }
+ 

@@ -4,6 +4,7 @@ import database.impl.DatabaseMock;
 import entity.AbstractComment;
 import entity.Admin;
 import entity.KategoriSungai;
+import entity.StatusSungai;
 import entity.Sungai;
 import entity.User;
 import entity.VerifikasiEmail;
@@ -47,6 +48,7 @@ public class Main {
          */
         Sungai sungaiobj = new KategoriSungai();
         KategoriSungai kategoriSungaiObj = new KategoriSungai();
+        StatusSungai statusSungaiObj = new StatusSungai();
         
 
         sungaiobj.setId(1);
@@ -66,6 +68,8 @@ public class Main {
         kategoriSungaiObj.sumberAir();
 
         System.out.println("Status Sungai: " + sungaiobj.getStatus());
+        statusSungaiObj.setPh(6.5);
+        statusSungaiObj.kualitasAir();
         
         /*
             OWNERSHIP: zahrah888
