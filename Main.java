@@ -11,6 +11,8 @@ import entity.VerifikasiEmail;
 import entity.impl.NewComment;
 import entity.impl.OldComment;
 import java.time.LocalDate;
+import java.util.Scanner;   
+
 
 /// Entry Point
 public class Main {
@@ -49,26 +51,41 @@ public class Main {
         Sungai sungaiobj = new KategoriSungai();
         KategoriSungai kategoriSungaiObj = new KategoriSungai();
         StatusSungai statusSungaiObj = new StatusSungai();
+        Scanner input = new Scanner(System.in);
         
+        System.out.println("===== Input data Sungai =====");
+        System.out.println("Input ID Sungai: " );
+        sungaiobj.setId(input.nextInt());
+        input.nextLine(); 
 
-        sungaiobj.setId(1);
-        sungaiobj.setNama("citarum");
-        sungaiobj.setLokasi("jawa Barat");
-        sungaiobj.setKategori("C");
-        sungaiobj.setStatus("Baik");
-        kategoriSungaiObj.setSumber("Air hujan");
-        kategoriSungaiObj.setDebit("1000 liter/detik");
+        System.out.println("Input Lokasi Sungai: " );
+        sungaiobj.setLokasi(input.nextLine());
 
+        System.out.println("Input Nama Sungai: " );
+        sungaiobj.setNama(input.nextLine());
+
+        System.out.println("Input Kategori Sungai: " );
+        sungaiobj.setKategori(input.nextLine());
+
+        System.out.println("Input Debit Air: " );
+        kategoriSungaiObj.setDebit(input.nextLine());
+
+        System.out.println("\n" );
+        System.out.println("===== Input status Sungai =====");
+        System.out.println("Input sumber sungai: " );
+kategoriSungaiObj.setSumber(input.nextLine());
+        System.out.println("input Ph Sungai: ");
+        statusSungaiObj.setPh(input.nextDouble());
+
+        System.out.println("\n" );
+        System.out.println("===== Data Sungai =====");
         System.out.println("ID Sungai: " + sungaiobj.getId());
         System.out.println("Nama Sungai: " + sungaiobj.getNama());
         System.out.println("Lokasi Sungai: " + sungaiobj.getLokasi());
-
         System.out.println("Kategori Sungai: " + sungaiobj.getKategori());
-        kategoriSungaiObj.debitAir();
-        kategoriSungaiObj.sumberAir();
-
-        System.out.println("Status Sungai: " + sungaiobj.getStatus());
-        statusSungaiObj.setPh(6.5);
+        System.out.println("Debit Air: " + kategoriSungaiObj.getDebit());
+        System.out.println ("Sumber air sungai: " + kategoriSungaiObj.getSumber());
+        System.out.println("Ph Sungai: " + statusSungaiObj.getPh());
         statusSungaiObj.kualitasAir();
         
         /*
