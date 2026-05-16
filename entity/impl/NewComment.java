@@ -1,6 +1,7 @@
 package entity.impl;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Map;
 
 import database.Database;
@@ -22,7 +23,13 @@ public class NewComment extends AbstractComment implements ICommentCreator {
     public void addComment(String comment,String userId){
         super.commentId = commentCount + 1;
         super.commentContent = comment;
-        super.userId = userId;
+
+        try {
+            Integer.parseInt(userId);
+            super.userId = userId;
+        } catch (NumberFormatException e) {
+            System.err.println("Warning! userId must be whole number");
+        }
         super.commentCreatedDate = addDate();
 
         commentCount = commentId;
