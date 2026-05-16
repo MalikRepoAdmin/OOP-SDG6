@@ -39,6 +39,21 @@ public class NewComment extends AbstractComment implements ICommentCreator {
     public void displaySendedComment(){
         String commentIdString = String.valueOf(commentId);
         Map<String, Object> commentColumn = database.getOneComment(commentIdString);
+        ArrayList<String> verifiedColumn = new ArrayList<>();
+
+        try {
+            String[] keysToFind = {"id_user", "id_komentar", "isi_komentar", "tgl_dibuat", "tgl_modified"};
+
+            for (String key : keysToFind) {
+                if (!commentColumn.containsKey(key)) {
+                    System.err.println("\nThe column '" + key + "' does not exist on the database");
+                }
+
+                verifiedColumn.add(key);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         System.out.printf("%n"+ "Sended Comment: %n" +
             "ID User: %s %n"+
@@ -46,11 +61,11 @@ public class NewComment extends AbstractComment implements ICommentCreator {
             "Comment: %s %n"+
             "Created Date: %s %n"+
             "Modified Date: %s %n %n",
-            commentColumn.get("id_user"),
-            commentColumn.get("id_komentar"),
-            commentColumn.get("isi_komentar"),
-            commentColumn.get("tgl_dibuat"),
-            commentColumn.get("tgl_modified"));
+            commentColumn.get(verifiedColumn.get(0)),
+            commentColumn.get(verifiedColumn.get(1)),
+            commentColumn.get(verifiedColumn.get(2)),
+            commentColumn.get(verifiedColumn.get(3)),
+            commentColumn.get(verifiedColumn.get(4)));
     }
 
     @Override
