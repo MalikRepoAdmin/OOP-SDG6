@@ -1,54 +1,113 @@
+
+
+import database.Database;
+import database.impl.DatabaseMock;
+import entity.Admin;
+import entity.DataBaru;
+import entity.KategoriSungai;
+import entity.StatusSungai;
+import entity.Sungai;
 import entity.User;
+import entity.VerifikasiEmail;
+import entity.impl.NewComment;
+import entity.impl.OldComment;
+import java.time.LocalDate;
 
-public class Main {
+/// Entry Point
+public class mainn {
+
     public static void main(String[] args) {
+        System.out.println("Ini adalah program untuk test project OOP kami!\n\n");
 
-        System.out.println("=== VALIDATION SYSTEM START ===");
 
-        String inputId = "abc";   // simulasi input salah
-        String nama = "";         // kosong sengaja
+        /*
+            OWNERSHIP: MalikRepoAdmin
+         */
+        // Instantiate DatabaseMock
+        // This Database instantiation is based on Interface type to decouple and demonstrate polymorphism
+        Database newDatabase = new DatabaseMock();
 
-        int idUser = -1;
 
-        try {
-            if (inputId == null || inputId.trim().isEmpty()) {
-                throw new IllegalArgumentException("ID tidak boleh kosong");
-            }
+        // NewComment and OldComment constructor depends on interface type Database
+        // we can freely change the database instance into DatabaseMysql easily as a proof of polymorphism
+        // Instantiate NewComment
+        NewComment newComment = new NewComment(newDatabase);
+        newComment.addComment("Hello, World!", "254311011");
+        newComment.sendComment();
+        newComment.displaySendedComment();
+        newComment.displayComment();
+        newComment.displayCount();
 
-            idUser = Integer.parseInt(inputId);
+        String commentId = String.valueOf(newComment.getCommentID());
 
-            if (idUser <= 0) {
-                throw new IllegalArgumentException("ID harus lebih dari 0");
-            }
+        // Instantiate OldComment
+        OldComment oldComment = new OldComment(newDatabase, commentId);
+        oldComment.displayComment();
+        oldComment.updateComment("Good Night, World...");
+        oldComment.sendComment();
+        oldComment.displaySendedComment();
 
-        } catch (NumberFormatException e) {
-            System.out.println("❌ Error: ID harus berupa angka!");
-            return;
-        } catch (IllegalArgumentException e) {
-            System.out.println("❌ Validasi Error: " + e.getMessage());
-            return;
-        }
 
-        if (nama == null || nama.trim().isEmpty()) {
-            System.out.println("❌ Validasi Error: Nama tidak boleh kosong!");
-            return;
-        }
+        /*
+            OWNERSHIP: raditCDlk
+         */
+        Sungai sungaiobj = new Sungai();
 
-        User user = new User(
-            idUser,
-            nama,
-            "test@gmail.com",
-            "123",
-            "2000-01-01",
-            "Mahasiswa",
-            "Bio",
-            "Surabaya",
-            "foto.jpg"
-        );
+        sungaiobj.setId(1);
+        sungaiobj.setNama("citarum");
+        sungaiobj.setLokasi("jawa Barat");
+        sungaiobj.setKategori("layak pakai");
+        sungaiobj.setStatus("BERSIH");
 
-        System.out.println("✔ User berhasil dibuat!");
-        user.showData();
+        System.out.println("ID Sungai: " + sungaiobj.getId());
+        System.out.println("Nama Sungai: " + sungaiobj.getNama());
+        System.out.println("Lokasi Sungai: " + sungaiobj.getLokasi());
+        System.out.println("Kategori Sungai: " + sungaiobj.getKategori());
+        System.out.println("Status Sungai: " + sungaiobj.getStatus());
 
-        System.out.println("=== PROGRAM SELESAI ===");
+        /*
+            OWNERSHIP: zahrah888
+         */
+        Admin adminobj = new Admin("ADM001");
+
+        adminobj.showDataAdmin();
+
+        DataBaru dbobj = new DataBaru (
+        adminobj.getIdAdmin(), 
+
+        "DB-2026-001", 
+        "05-04-2026", 
+        "Kondisi air bersih", 
+        "Sedang Proses Verifikasi"
+         );
+
+        dbobj.showData();
+
+        /*
+            OWNERSHIP: AngelisNadia
+         */
+        User u = new User(1, "Angelis Nasta Nadia", "angelynas@gmail.com", 
+        "12345", "12-08-2005", "Mahasiswa", 
+        "Peduli lingkungan", "Jakarta", "foto.jpg");
+
+
+        System.out.print("\n\n");
+        System.out.println("ID User: " + u.getIdUser());
+        System.out.println("Nama: " + u.getNama());
+        System.out.println("Email: " + u.getEmail());
+        System.out.println("Password: " + u.getPassword());
+        System.out.println("Tanggal Lahir: " + u.getTanggalLahir());
+        System.out.println("Pekerjaan: " + u.getPekerjaan());
+        System.out.println("Bio: " + u.getBio());
+        System.out.println("Domisili: " + u.getDomisili());
+        System.out.println("Foto Profil: " + u.getFotoProfil());
+
+        VerifikasiEmail vE = new VerifikasiEmail(1, "Angelis Nasta Nadia", "angelynas@gmail.com", 
+        "12345", "12-08-2005", "Mahasiswa", 
+        "Peduli lingkungan", "Jakarta", "foto.jpg", 1, "05-04-2026", "05-04-2026", "verified");
+
+        vE.tampilkanData();
+
     }
+
 }
