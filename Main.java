@@ -4,12 +4,13 @@ import database.impl.DatabaseMock;
 import entity.AbstractComment;
 import entity.Admin;
 import entity.KategoriSungai;
-import entity.Sungai;
 import entity.User;
 import entity.VerifikasiEmail;
 import entity.impl.NewComment;
 import entity.impl.OldComment;
 import java.time.LocalDate;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /// Entry Point
 public class Main {
@@ -45,28 +46,55 @@ public class Main {
         /*
             OWNERSHIP: raditCDlk
          */
-        Sungai sungaiobj = new KategoriSungai();
-        KategoriSungai kategoriSungaiObj = new KategoriSungai();
-        
+        KategoriSungai sungai = new KategoriSungai();
+        Scanner input = new Scanner(System.in);
 
-        sungaiobj.setId(1);
-        sungaiobj.setNama("citarum");
-        sungaiobj.setLokasi("jawa Barat");
-        sungaiobj.setKategori("C");
-        sungaiobj.setStatus("Baik");
-        kategoriSungaiObj.setSumber("Air hujan");
-        kategoriSungaiObj.setDebit("1000 liter/detik");
+        System.out.println("===== Input data Sungai =====");
+        while (true) {
 
-        System.out.println("ID Sungai: " + sungaiobj.getId());
-        System.out.println("Nama Sungai: " + sungaiobj.getNama());
-        System.out.println("Lokasi Sungai: " + sungaiobj.getLokasi());
+            try {
 
-        System.out.println("Kategori Sungai: " + sungaiobj.getKategori());
-        kategoriSungaiObj.debitAir();
-        kategoriSungaiObj.sumberAir();
+                System.out.print("Input ID Sungai: ");
+                sungai.setId(input.nextInt());
+                input.nextLine();
 
-        System.out.println("Status Sungai: " + sungaiobj.getStatus());
-        
+                break;
+
+            } catch (InputMismatchException e) {
+
+                System.out.println("Error: ID Sungai harus berupa angka!");
+                input.nextLine();
+            }
+        }
+
+        System.out.println("Input Lokasi Sungai: ");
+        sungai.setLokasi(input.nextLine());
+        System.out.println("Input Nama Sungai: ");
+        sungai.setNama(input.nextLine());
+
+        System.out.println("Input Debit Air (m3/s): ");
+        sungai.setDebit(input.nextLine());
+
+        System.out.println("\n");
+        System.out.println("===== Input status Sungai =====");
+        System.out.println("Input sumber sungai (hujan,pegunungan,laut,danau): ");
+        sungai.setSumber(input.nextLine());
+        System.out.println("input Ph Sungai: ");
+        sungai.setPh(input.nextDouble());
+
+        System.out.println("\n");
+        System.out.println("===== Data Sungai =====");
+        System.out.println("ID Sungai: " + sungai.getId());
+        System.out.println("Nama Sungai: " + sungai.getNama());
+        System.out.println("Lokasi Sungai: " + sungai.getLokasi());
+        System.out.println("Debit Air Sungai : " + sungai.getDebit() + " m3/s");
+
+        System.out.println("Sumber Air Sungai : " + sungai.getSumber());
+        sungai.sumberAir();
+        System.out.println("Kategori Sungai : " + sungai.getKategori());
+        System.out.println("Ph Sungai: " + sungai.getPh());
+        sungai.kualitasAir();
+
         /*
             OWNERSHIP: zahrah888
          */
