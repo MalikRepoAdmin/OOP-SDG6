@@ -69,9 +69,21 @@ public class Main {
 
         System.out.println("Input Lokasi Sungai: ");
         sungai.setLokasi(input.nextLine());
-        System.out.println("Input Nama Sungai: ");
-        sungai.setNama(input.nextLine());
 
+        while (true) {
+            try {
+                System.out.print("Input Nama Sungai: ");
+                String nama = input.nextLine();
+                if (nama.trim().isEmpty()) {
+                    throw new IllegalArgumentException("Nama sungai tidak boleh kosong!");
+                }
+                sungai.setNama(nama);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+    
         System.out.println("Input Debit Air (m3/s): ");
         sungai.setDebit(input.nextLine());
 
