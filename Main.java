@@ -14,7 +14,7 @@ import entity.impl.OldComment;
 import java.time.LocalDate;
 
 /// Entry Point
-public class mainn {
+public class Main {
 
     public static void main(String[] args) {
         System.out.println("Ini adalah program untuk test project OOP kami!\n\n");
