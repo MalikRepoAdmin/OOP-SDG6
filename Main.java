@@ -1,4 +1,5 @@
 
+
 import database.Database;
 import database.impl.DatabaseMock;
 import entity.Admin;
@@ -13,7 +14,7 @@ import entity.impl.OldComment;
 import java.time.LocalDate;
 
 /// Entry Point
-public class Main {
+public class mainn {
 
     public static void main(String[] args) {
         System.out.println("Ini adalah program untuk test project OOP kami!\n\n");
