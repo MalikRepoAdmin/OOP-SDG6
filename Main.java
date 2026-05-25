@@ -11,7 +11,12 @@ import entity.User;
 import entity.VerifikasiEmail;
 import entity.impl.NewComment;
 import entity.impl.OldComment;
+import views.MainFrame;
+import views.auth.LoginFrame;
+
 import java.time.LocalDate;
+
+import javax.swing.SwingUtilities;
 
 /// Entry Point
 public class Main {
@@ -47,6 +52,15 @@ public class Main {
         oldComment.sendComment();
         oldComment.displaySendedComment();
 
+
+        // Test Swing UI
+        SwingUtilities.invokeLater(() -> {
+
+            LoginFrame frame =
+                    new LoginFrame();
+
+            frame.setVisible(true);
+        });
 
         /*
             OWNERSHIP: raditCDlk
