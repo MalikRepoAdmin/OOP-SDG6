@@ -1,57 +1,38 @@
 package model;
 
+// Memenuhi SRP & Has-A Relation: Sungai bertindak sebagai superclass data fisik utama objek pantau
 public class Sungai {
+    // Properti dasar identitas fisik sungai
     private int id;
     private String namaSungai;
     private String lokasi;
-    private String kategori;
-    private String status;
+    
+    // Hubungan Komposisi: Mengaitkan komponen objek murni Kategori dan Status ke dalam Sungai
+    private KategoriSungai komponenKategori;
+    private StatusSungai komponenStatus;
 
-    public Sungai(int id, String namaSungai, String lokasi, String kategori, String status) {
+    // Constructor utama penampung parameter teks dan parameter objek relasi murni
+    public Sungai(int id, String namaSungai, String lokasi, KategoriSungai komponenKategori, StatusSungai komponenStatus) {
         this.id = id;
         this.namaSungai = namaSungai;
         this.lokasi = lokasi;
-        this.kategori = kategori;
-        this.status = status;
+        this.komponenKategori = komponenKategori;
+        this.komponenStatus = komponenStatus;
     }
 
-    public int getId() { 
-        return id; 
-    }
-    
-    public void setId(int id) { 
-        this.id = id; 
-    }
+    // Getter dan Setter penegakan Enkapsulasi
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public String getNamaSungai() { 
-        return namaSungai; 
-    }
-    
-    public void setNamaSungai(String namaSungai) { 
-        this.namaSungai = namaSungai; 
-    }
+    public String getNamaSungai() { return namaSungai; }
+    public void setNamaSungai(String namaSungai) { this.namaSungai = namaSungai; }
 
-    public String getLokasi() { 
-        return lokasi; 
-    }
-    
-    public void setLokasi(String lokasi) { 
-        this.lokasi = lokasi; 
-    }
+    public String getLokasi() { return lokasi; }
+    public void setLokasi(String lokasi) { this.lokasi = lokasi; }
 
-    public String getKategori() { 
-        return kategori; 
-    }
-    
-    public void setKategori(String kategori) { 
-        this.kategori = kategori; 
-    }
+    public KategoriSungai getKomponenKategori() { return komponenKategori; }
+    public void setKomponenKategori(KategoriSungai komponenKategori) { this.komponenKategori = komponenKategori; }
 
-    public String getStatus() { 
-        return status; 
-    }
-    
-    public void setStatus(String status) { 
-        this.status = status; 
-    }
+    public StatusSungai getKomponenStatus() { return komponenStatus; }
+    public void setKomponenStatus(StatusSungai komponenStatus) { this.komponenStatus = komponenStatus; }
 }
