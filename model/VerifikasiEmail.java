@@ -1,29 +1,25 @@
 package model;
 
-// Konsep Inheritance (Subclass pewarisan murni dari parent User)
-public class VerifikasiEmail extends User {
-    
-    // Konsep Enkapsulasi data dengan modifier private
+public class VerifikasiEmail {
+    // Enkapsulasi properti data log transaksi murni
     private int idVerifikasi;
     private String tanggalKirim;
     private String tanggalVerifikasi;
     private String statusEmail;
+    
+    // Relasi Komposisi SRP: Log verifikasi MEMILIKI target satu akun User
+    private User targetUser;
 
-    // Constructor murni penampung parameter dinamis
-    public VerifikasiEmail(int idUser, String nama, String email, String password, String tanggalLahir, 
-                           String pekerjaan, String bio, String domisili, String fotoProfil, 
-                           int idVerifikasi, String tanggalKirim, String tanggalVerifikasi, String statusEmail) {
-        
-        // Melewatkan parameter kredensial login ke constructor parent (User)
-        super(idUser, nama, email, password, tanggalLahir, pekerjaan, bio, domisili, fotoProfil);
-        
+    // Constructor pengisian parameter data dan objek relasi
+    public VerifikasiEmail(int idVerifikasi, String tanggalKirim, String tanggalVerifikasi, String statusEmail, User targetUser) {
         this.idVerifikasi = idVerifikasi;
         this.tanggalKirim = tanggalKirim;
         this.tanggalVerifikasi = tanggalVerifikasi;
         this.statusEmail = statusEmail;
+        this.targetUser = targetUser;
     }
 
-    // Komponen Enkapsulasi (Getter dan Setter)
+    // Getter dan Setter enkapsulasi data
     public int getIdVerifikasi() { return idVerifikasi; }
     public void setIdVerifikasi(int idVerifikasi) { this.idVerifikasi = idVerifikasi; }
 
@@ -35,4 +31,7 @@ public class VerifikasiEmail extends User {
 
     public String getStatusEmail() { return statusEmail; }
     public void setStatusEmail(String statusEmail) { this.statusEmail = statusEmail; }
+
+    public User getTargetUser() { return targetUser; }
+    public void setTargetUser(User targetUser) { this.targetUser = targetUser; }
 }
