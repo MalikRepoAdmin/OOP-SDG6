@@ -1,4 +1,4 @@
-package model;
+package entity;
 
 // Memenuhi SRP & Has-A Relation: Sungai bertindak sebagai superclass data fisik utama objek pantau
 public class Sungai {

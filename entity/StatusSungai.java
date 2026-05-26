@@ -1,4 +1,4 @@
-package model;
+package entity;
 
 // Memenuhi SRP: Kelas berdiri mandiri khusus mengelola parameter kualitas fisik air
 public class StatusSungai {

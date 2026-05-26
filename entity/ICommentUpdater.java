@@ -1,4 +1,4 @@
-package model;
+package entity;
 
 // Interface Segregation Principle (Kontrak aksi terisolasi khusus pembaruan data)
 public interface ICommentUpdater {

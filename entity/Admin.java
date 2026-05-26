@@ -1,4 +1,4 @@
-package model;
+package entity;
 
 // Keyword 'extends' membuktikan hubungan 'Is-A' bahwa Admin mewarisi akun dasar dari User
 // Keyword 'implements' mengunci Admin agar wajib mematuhi seluruh kontrak metode dari Verifikator

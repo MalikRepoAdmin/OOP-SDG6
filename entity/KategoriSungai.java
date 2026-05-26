@@ -1,4 +1,4 @@
-package model;
+package entity;
 
 // Memenuhi SRP: Kelas berdiri mandiri khusus mengelola standarisasi tingkatan keamanan air
 public class KategoriSungai {

@@ -1,4 +1,4 @@
-package model;
+package entity;
 
 public class VerifikasiEmail {
     // Enkapsulasi properti data log transaksi murni
