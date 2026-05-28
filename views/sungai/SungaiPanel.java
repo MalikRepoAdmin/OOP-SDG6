@@ -61,15 +61,7 @@ public class SungaiPanel extends BaseCrudPanel {
 
     private void showAddDialog() {
 
-        BaseFormDialog dialog = new BaseFormDialog(
-                null,
-                "Tambah Sungai",
-                new String[] {
-                        "Nama Sungai",
-                        "Kategori",
-                        "Status"
-                }
-        );
+        BaseFormDialog dialog = new SungaiAddFormDialog();
 
         dialog.setOnSave(() -> {
 
