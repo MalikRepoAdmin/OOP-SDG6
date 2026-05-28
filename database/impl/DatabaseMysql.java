@@ -161,6 +161,7 @@ public class DatabaseMysql implements Database{
         return resultMap;
     }
 
+    @Deprecated
     @Override
     public List<Map<String, Object>> getAllComment(){
         String query = """
