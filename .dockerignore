@@ -1,7 +1,23 @@
+# Docker configuration files
 Dockerfile
 docker-compose.yml
 .dockerignore
 .env
+.env.example
 
+# Source Control & Documentation
 .git/
+.gitignore
 documentation/
+
+# IDE and System Files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Local Build Artifacts (Crucial for your setup!)
+# Prevents your local compiled classes from clashing with Docker's compiler
+bin/
+obj/

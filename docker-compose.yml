@@ -1,22 +1,29 @@
 services:
   db-container:
     image: mysql:9.0
+    container_name: mysql-db
     environment:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASSWORD}
-
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     ports:
-      - "${PORTS}:${PORTS}"
+      # Maps the user's custom host port to MySQL's internal port 3306
+      - "${HOST_DB_PORT}:3306"
     volumes:
-      - ./database/schema/init.sql:docker-entrypoint-initdb.d:init.sql
+      - ./database/schema/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
 
   java-app:
     build: .
     container_name: test-comment-app
     depends_on:
       - db-container
+    ports:
+      # Maps the user's custom host port to your Java app's internal port (e.g., 8080)
+      - "${HOST_APP_PORT}:8080"
     networks:
       - app-network
     environment:
@@ -27,3 +34,6 @@ services:
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  mysql-data:
