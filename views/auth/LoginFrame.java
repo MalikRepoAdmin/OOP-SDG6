@@ -1,12 +1,22 @@
 package views.auth;
 
 import views.base.BaseFrame;
+import views.utils.DialogUtil;
+import views.validator.GlobalExceptionHandler;
 import views.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Map;
 
 public class LoginFrame extends BaseFrame {
+
+    JTextField emailField = new JTextField();
+    JPasswordField passwordField = new JPasswordField();
+
+    private LoginRequest loginRequest;
+    private Map<String, String> requestErrors;
+
 
     public LoginFrame() {
 
@@ -52,12 +62,6 @@ public class LoginFrame extends BaseFrame {
                         22
                 )
         );
-
-        JTextField emailField =
-                new JTextField();
-
-        JPasswordField passwordField =
-                new JPasswordField();
 
         JButton loginButton =
                 new JButton("Login");
@@ -131,6 +135,26 @@ public class LoginFrame extends BaseFrame {
 
         loginButton.addActionListener(e -> {
 
+            this.loginRequest = new LoginRequest(emailField.getText(), passwordField.getText());
+
+            this.requestErrors = GlobalExceptionHandler.handleValidation(this.loginRequest);
+                if (!this.requestErrors.isEmpty()) {
+                    // JIKA ADA ERROR: tampilkan ke UI
+                    DialogUtil.showError(null, "Gagal memproses data! Silakan perbaiki input Anda.");
+                    
+                    if (this.requestErrors.containsKey("email")) {
+                        DialogUtil.showError(null, "Error Email: " + this.requestErrors.get("email"));
+                    }
+                    if (this.requestErrors.containsKey("password")) {
+                        DialogUtil.showError(null, "Error Password: " + this.requestErrors.get("password"));
+                    }
+
+                    return;
+                } else {
+                    // JIKA AMAN: Lanjutkan proses login
+                    DialogUtil.showSuccess(null, "Input valid! Menghubungkan ke dashboard...");
+                }
+
             MainFrame frame =
                     new MainFrame();
 
@@ -140,23 +164,21 @@ public class LoginFrame extends BaseFrame {
         });
 
         registerButton.addActionListener(e -> {
+            dispose();
 
             RegisterFrame frame =
                     new RegisterFrame();
 
             frame.setVisible(true);
-
-            dispose();
         });
 
         forgotButton.addActionListener(e -> {
+            dispose();
 
             ForgotPasswordFrame frame =
                     new ForgotPasswordFrame();
 
             frame.setVisible(true);
-
-            dispose();
         });
     }
 }
