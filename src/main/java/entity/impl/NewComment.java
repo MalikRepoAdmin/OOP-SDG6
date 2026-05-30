@@ -95,7 +95,7 @@ public class NewComment extends AbstractComment implements ICommentCreator {
     }
 
     @Override
-    public int getCommentID(){
+    public int getCommentId(){
         return super.commentId;
     }
 }

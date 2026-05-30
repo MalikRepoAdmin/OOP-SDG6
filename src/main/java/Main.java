@@ -43,7 +43,7 @@ public class Main {
         newComment.displayComment();
         newComment.displayCount();
 
-        String commentId = String.valueOf(newComment.getCommentID());
+        String commentId = String.valueOf(newComment.getCommentId());
 
         // Instantiate OldComment
         OldComment oldComment = new OldComment(newDatabase, commentId);
@@ -65,26 +65,26 @@ public class Main {
         /*
             OWNERSHIP: raditCDlk
          */
-        Sungai sungaiobj = new Sungai();
+        Sungai sungaiobj = new Sungai(1, "citarum", "jawa Barat", new KategoriSungai("aman", "layak pakai"), new StatusSungai(2.0, "Baik"));
 
         sungaiobj.setId(1);
-        sungaiobj.setNama("citarum");
+        sungaiobj.setNamaSungai("citarum");
         sungaiobj.setLokasi("jawa Barat");
-        sungaiobj.setKategori("layak pakai");
-        sungaiobj.setStatus("BERSIH");
+        sungaiobj.setKomponenKategori(new KategoriSungai("aman", "layak pakai"));
+        sungaiobj.setKomponenStatus(new StatusSungai(2.0, "Baik"));
 
         System.out.println("ID Sungai: " + sungaiobj.getId());
-        System.out.println("Nama Sungai: " + sungaiobj.getNama());
+        System.out.println("Nama Sungai: " + sungaiobj.getNamaSungai());
         System.out.println("Lokasi Sungai: " + sungaiobj.getLokasi());
-        System.out.println("Kategori Sungai: " + sungaiobj.getKategori());
-        System.out.println("Status Sungai: " + sungaiobj.getStatus());
+        System.out.println("Kategori Sungai: " + sungaiobj.getKomponenKategori());
+        System.out.println("Status Sungai: " + sungaiobj.getKomponenStatus());
 
         /*
             OWNERSHIP: zahrah888
          */
-        Admin adminobj = new Admin("ADM001");
+        Admin adminobj = new Admin(2, "Zahrah", "Zahrah@gmail.com", "admin123", "ADM001");
 
-        adminobj.showDataAdmin();
+        // adminobj.showDataAdmin();
 
         DataBaru dbobj = new DataBaru (
         adminobj.getIdAdmin(), 
@@ -116,11 +116,9 @@ public class Main {
         System.out.println("Domisili: " + u.getDomisili());
         System.out.println("Foto Profil: " + u.getFotoProfil());
 
-        VerifikasiEmail vE = new VerifikasiEmail(1, "Angelis Nasta Nadia", "angelynas@gmail.com", 
-        "12345", "12-08-2005", "Mahasiswa", 
-        "Peduli lingkungan", "Jakarta", "foto.jpg", 1, "05-04-2026", "05-04-2026", "verified");
+        VerifikasiEmail vE = new VerifikasiEmail(1, "12-08-2026", "12-08-2026", "verified", u);
 
-        vE.tampilkanData();
+        // vE.tampilkanData();
 
     }
 

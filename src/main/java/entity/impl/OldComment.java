@@ -81,7 +81,7 @@ public class OldComment  extends AbstractComment implements ICommentUpdater{
 
 
     @Override
-    public int getCommentID(){
+    public int getCommentId(){
         return super.commentId;
     }
 }

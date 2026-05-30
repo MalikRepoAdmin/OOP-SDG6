@@ -9,9 +9,11 @@ public class CommentTableModel extends BaseTableModel {
         super(
                 new String[] {
                         "ID",
+                        "ID User",
                         "Nama User",
                         "Komentar",
-                        "Tanggal"
+                        "Tanggal Dibuat",
+                        "Tanggal Diubah",
                 }
         );
     }

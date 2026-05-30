@@ -4,7 +4,6 @@ import views.base.BaseCrudPanel;
 import views.base.BaseFormDialog;
 import views.base.BaseTableModel;
 import views.utils.DialogUtil;
-import views.utils.ValidationUtil;
 import views.validator.GlobalExceptionHandler;
 
 import java.util.ArrayList;
@@ -96,7 +95,6 @@ public class SungaiPanel extends BaseCrudPanel {
 
                     return;
                 } else {
-                    // JIKA AMAN: Lanjutkan proses Register
                     DialogUtil.showSuccess(null, "Input valid! Menghubungkan ke database...");
                 }
 
@@ -120,7 +118,6 @@ public class SungaiPanel extends BaseCrudPanel {
     }
 
 
-    // TODO: this method still create new record. not edit
     private void showEditDialog() {
 
         int selectedRow;
@@ -178,7 +175,6 @@ public class SungaiPanel extends BaseCrudPanel {
 
                     return;
                 } else {
-                    // JIKA AMAN: Lanjutkan proses Register
                     DialogUtil.showSuccess(null, "Input valid! Menghubungkan ke database...");
                 }
 
