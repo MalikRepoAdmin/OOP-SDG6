@@ -1,47 +1,38 @@
 package entity;
 
-public class Sungai { // parent class
-
+// Memenuhi SRP & Has-A Relation: Sungai bertindak sebagai superclass data fisik utama objek pantau
+public class Sungai {
+    // Properti dasar identitas fisik sungai
     private int id;
-    private String nama_sungai;
+    private String namaSungai;
     private String lokasi;
-    private String kategori;
-    private String status;
+    
+    // Hubungan Komposisi: Mengaitkan komponen objek murni Kategori dan Status ke dalam Sungai
+    private KategoriSungai komponenKategori;
+    private StatusSungai komponenStatus;
 
-   //getter&setter
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
+    // Constructor utama penampung parameter teks dan parameter objek relasi murni
+    public Sungai(int id, String namaSungai, String lokasi, KategoriSungai komponenKategori, StatusSungai komponenStatus) {
         this.id = id;
-    }
-
-    public String getNama(){
-        return nama_sungai;
-    }
-    public void setNama(String nama_sungai) {
-        this.nama_sungai = nama_sungai;
-    }
-
-    public String getLokasi(){
-        return lokasi;
-    }
-    public void setLokasi(String lokasi) {
+        this.namaSungai = namaSungai;
         this.lokasi = lokasi;
+        this.komponenKategori = komponenKategori;
+        this.komponenStatus = komponenStatus;
     }
 
-    public String getKategori() {
-        return kategori;
-    }
-    public void setKategori(String kategori) {
-        this.kategori = kategori;
-    }
+    // Getter dan Setter penegakan Enkapsulasi
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public String getStatus() {
-        return status;
-    }    
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    public String getNamaSungai() { return namaSungai; }
+    public void setNamaSungai(String namaSungai) { this.namaSungai = namaSungai; }
 
+    public String getLokasi() { return lokasi; }
+    public void setLokasi(String lokasi) { this.lokasi = lokasi; }
+
+    public KategoriSungai getKomponenKategori() { return komponenKategori; }
+    public void setKomponenKategori(KategoriSungai komponenKategori) { this.komponenKategori = komponenKategori; }
+
+    public StatusSungai getKomponenStatus() { return komponenStatus; }
+    public void setKomponenStatus(StatusSungai komponenStatus) { this.komponenStatus = komponenStatus; }
 }

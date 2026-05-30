@@ -1,69 +1,37 @@
 package entity;
 
-public class VerifikasiEmail extends User {
-
+public class VerifikasiEmail {
+    // Enkapsulasi properti data log transaksi murni
     private int idVerifikasi;
-    private String tglKirim;
-    private String tglVerifikasi;
+    private String tanggalKirim;
+    private String tanggalVerifikasi;
     private String statusEmail;
+    
+    // Relasi Komposisi SRP: Log verifikasi MEMILIKI target satu akun User
+    private User targetUser;
 
-    public VerifikasiEmail(int idUser, String nama, String email, String password,
-                           String tanggalLahir, String pekerjaan, String bio,
-                           String domisili, String fotoProfil,
-                           int idVerifikasi, String tglKirim,
-                           String tglVerifikasi, String statusEmail) {
-
-        super(idUser, nama, email, password, tanggalLahir,
-              pekerjaan, bio, domisili, fotoProfil);
-
+    // Constructor pengisian parameter data dan objek relasi
+    public VerifikasiEmail(int idVerifikasi, String tanggalKirim, String tanggalVerifikasi, String statusEmail, User targetUser) {
         this.idVerifikasi = idVerifikasi;
-        this.tglKirim = tglKirim;
-        this.tglVerifikasi = tglVerifikasi;
+        this.tanggalKirim = tanggalKirim;
+        this.tanggalVerifikasi = tanggalVerifikasi;
         this.statusEmail = statusEmail;
+        this.targetUser = targetUser;
     }
 
-    public int getIdVerifikasi() {
-        return idVerifikasi;
-    }
+    // Getter dan Setter enkapsulasi data
+    public int getIdVerifikasi() { return idVerifikasi; }
+    public void setIdVerifikasi(int idVerifikasi) { this.idVerifikasi = idVerifikasi; }
 
-    public void setIdVerifikasi(int idVerifikasi) {
-        this.idVerifikasi = idVerifikasi;
-    }
+    public String getTanggalKirim() { return tanggalKirim; }
+    public void setTanggalKirim(String tanggalKirim) { this.tanggalKirim = tanggalKirim; }
 
-    public String getTglKirim() {
-        return tglKirim;
-    }
+    public String getTanggalVerifikasi() { return tanggalVerifikasi; }
+    public void setTanggalVerifikasi(String tanggalVerifikasi) { this.tanggalVerifikasi = tanggalVerifikasi; }
 
-    public void setTglKirim(String tglKirim) {
-        this.tglKirim = tglKirim;
-    }
+    public String getStatusEmail() { return statusEmail; }
+    public void setStatusEmail(String statusEmail) { this.statusEmail = statusEmail; }
 
-    public String getTglVerifikasi() {
-        return tglVerifikasi;
-    }
-
-    public void setTglVerifikasi(String tglVerifikasi) {
-        this.tglVerifikasi = tglVerifikasi;
-    }
-
-    public String getStatusEmail() {
-        return statusEmail;
-    }
-
-    public void setStatusEmail(String statusEmail) {
-        this.statusEmail = statusEmail;
-    }
-
-    public void tampilkanData() {
-        System.out.println("\n=== DATA USER ===");
-        System.out.println("ID User        : " + getIdUser());
-        System.out.println("Nama           : " + getNama());
-        System.out.println("Email          : " + getEmail());
-
-        System.out.println("\n=== VERIFIKASI EMAIL ===");
-        System.out.println("ID Verifikasi  : " + idVerifikasi);
-        System.out.println("Tanggal Kirim  : " + tglKirim);
-        System.out.println("Tanggal Verif  : " + tglVerifikasi);
-        System.out.println("Status Email   : " + statusEmail);
-    }
+    public User getTargetUser() { return targetUser; }
+    public void setTargetUser(User targetUser) { this.targetUser = targetUser; }
 }

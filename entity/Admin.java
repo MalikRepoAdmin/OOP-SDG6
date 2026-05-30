@@ -1,25 +1,56 @@
 package entity;
 
-public class Admin extends User {
+// Keyword 'extends' membuktikan hubungan 'Is-A' bahwa Admin mewarisi akun dasar dari User
+// Keyword 'implements' mengunci Admin agar wajib mematuhi seluruh kontrak metode dari Verifikator
+public class Admin extends User implements Verifikator {
+    
+    // Atribut unik yang hanya dimiliki oleh akun Admin, dibatasi ketat menggunakan modifier private
     private String idAdmin;
+    private String logWaktuAktivitas;
 
-    public Admin(String idAdmin) {
-                            
-        super(2, "", "", "", "",
-              "", "", "", "");
-        this.idAdmin = "ADM001";
-        this.setEmail("zzzzzhrrr@gmail.com");
-        this.setPassword("admriverX12");
-        this.setNama("Zahrah");
+    // Constructor murni untuk instansiasi objek Admin secara dinamis dari luar kelas
+    public Admin(int idUser, String nama, String email, String password, String idAdmin) {
+        
+        // super() wajib dipanggil di baris pertama untuk mengirim data kredensial login ke parent (User)
+        // Atribut profil warga lainnya sengaja diisi default "-" karena Admin adalah orang yang berbeda
+        super(idUser, nama, email, password, "-", "-", "-", "-", "-");
+        
+        // Inisialisasi variabel internal spesifik milik objek Admin
+        this.idAdmin = idAdmin;
+        this.logWaktuAktivitas = "Belum ada aktivitas"; // Mengatur status log awal sistem
     }
 
-    public String getIdAdmin() {
-        return idAdmin;
+    // Metode Getter untuk mengambil nilai idAdmin yang terenkapsulasi private
+    public String getIdAdmin() { 
+        return idAdmin; 
     }
 
-    public void showDataAdmin() {
-        System.out.println("ID Admin : " + idAdmin);
-        System.out.println("Email    : " + getEmail());
-        System.out.println("Nama     : " + getNama());
+    // Metode Setter untuk memperbarui nilai idAdmin dari luar kelas secara aman
+    public void setIdAdmin(String idAdmin) { 
+        this.idAdmin = idAdmin; 
+    }
+
+    // Polimorfisme: Mengimplementasikan metode wajib dari interface Verifikator
+    @Override
+    public String ambilNamaPeranSistem() { 
+        return "ADMIN_VERIFIKATOR_UTAMA"; // Mengembalikan identitas role murni berbentuk String
+    }
+
+    // Polimorfisme: Mengunci otoritas perizinan murni sistem untuk memvalidasi laporan
+    @Override
+    public boolean periksaIzinVerifikasi() { 
+        return true; // Mengembalikan nilai true karena Admin memegang hak akses mutlak
+    }
+
+    // Polimorfisme: Menyediakan slot untuk memperbarui jejak waktu aktivitas verifikasi terakhir
+    @Override
+    public void catatWaktuAktivitasTerakhir(String tanggalDanWaktu) { 
+        this.logWaktuAktivitas = tanggalDanWaktu; // Menyimpan input tanggal secara dinamis ke variabel
+    }
+
+    // Polimorfisme: Menyediakan metode untuk menarik data log waktu audit trail
+    @Override
+    public String ambilWaktuAktivitasTerakhir() { 
+        return this.logWaktuAktivitas; 
     }
 }
