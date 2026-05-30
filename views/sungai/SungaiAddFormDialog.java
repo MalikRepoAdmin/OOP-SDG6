@@ -29,17 +29,6 @@ public class SungaiAddFormDialog extends BaseFormDialog {
             Map<String, String> values =
                     getFormValues();
 
-            if (values.get("Nama Sungai")
-                    .isBlank()) {
-
-                DialogUtil.showError(
-                        this,
-                        "Nama sungai wajib diisi"
-                );
-
-                return;
-            }
-
             dispose();
         });
     }

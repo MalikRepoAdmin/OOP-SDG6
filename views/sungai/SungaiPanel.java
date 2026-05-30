@@ -5,6 +5,7 @@ import views.base.BaseFormDialog;
 import views.base.BaseTableModel;
 import views.utils.DialogUtil;
 import views.utils.ValidationUtil;
+import views.validator.GlobalExceptionHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,19 +20,20 @@ import java.util.Map;
 public class SungaiPanel extends BaseCrudPanel {
 
     private final BaseTableModel tableModel;
-
     private final List<Object[]> dummyData;
+
+    private SungaiAddRequest sungaiAddRequest = new SungaiAddRequest();
+    private Map<String, String> sungaiAddErrors;
+
+    private SungaiEditRequest sungaiEditRequest = new SungaiEditRequest();
+    private Map<String, String> sungaiEditErrors;
+
 
     public SungaiPanel() {
 
         dummyData = new ArrayList<>();
 
-        tableModel = new BaseTableModel(new String[] {
-                "ID",
-                "Nama Sungai",
-                "Kategori",
-                "Status"
-        });
+        tableModel = new SungaiTableModel();
 
         setTableModel(tableModel);
 
@@ -56,7 +58,11 @@ public class SungaiPanel extends BaseCrudPanel {
 
         setOnAdd(this::showAddDialog);
 
+        setOnEdit(this::showEditDialog);
+
         setOnDelete(this::deleteSelectedData);
+
+        setOnRefresh(this::refreshTable);
     }
 
     private void showAddDialog() {
@@ -67,17 +73,38 @@ public class SungaiPanel extends BaseCrudPanel {
 
             Map<String, String> values = dialog.getFormValues();
 
-            if (ValidationUtil.hasEmptyField(values)) {
+            String valuesNamaSungai = values.get("Nama Sungai");
+            String valuesKategori = values.get("Kategori");
+            String valuesStatus = values.get("Status");
 
-                DialogUtil.showError(dialog, "Semua field wajib diisi");
-                return;
-            }
+            // JAKARTA VALIDATION
+            this.sungaiAddRequest.setNamaSungai(valuesNamaSungai);
+            this.sungaiAddRequest.setKategori(valuesKategori);
+            this.sungaiAddRequest.setStatus(valuesStatus);
+
+            this.sungaiAddErrors = GlobalExceptionHandler.handleValidation(this.sungaiAddRequest);
+                if (!this.sungaiAddErrors.isEmpty()) {
+                    // JIKA ADA ERROR: tampilkan ke UI
+                    DialogUtil.showError(null, "Gagal memproses data! Silakan perbaiki input Anda.");
+                    
+                    if (this.sungaiAddErrors.containsKey("namaSungai")) {
+                        DialogUtil.showError(null, "Error Nama Sungai: " + this.sungaiAddErrors.get("namaSungai"));
+                    }
+                    if (this.sungaiAddErrors.containsKey("status")) {
+                        DialogUtil.showError(null, "Error Status: " + this.sungaiAddErrors.get("status"));
+                    }
+
+                    return;
+                } else {
+                    // JIKA AMAN: Lanjutkan proses Register
+                    DialogUtil.showSuccess(null, "Input valid! Menghubungkan ke database...");
+                }
 
             Object[] row = new Object[] {
                     dummyData.size() + 1,
-                    values.get("Nama Sungai"),
-                    values.get("Kategori"),
-                    values.get("Status")
+                    valuesNamaSungai,
+                    valuesKategori,
+                    valuesStatus,
             };
 
             dummyData.add(row);
@@ -92,27 +119,119 @@ public class SungaiPanel extends BaseCrudPanel {
         dialog.setVisible(true);
     }
 
-    private void deleteSelectedData() {
 
-        int selectedRow = table.getSelectedRow();
+    // TODO: this method still create new record. not edit
+    private void showEditDialog() {
 
-        if (selectedRow < 0) {
+        int selectedRow;
+        BaseFormDialog dialog = new SungaiEditFormDialog();
 
+
+        // Data Selection Validation
+        try {
+            // Return -1 if no row selected, triggering indexoutofbound exception
+            selectedRow = table.getSelectedRow();
+
+            // This trigger IndexOutOfBound exception
+            Object[] data = tableModel.getRow(selectedRow);
+
+        } catch (IndexOutOfBoundsException e) {
+            
             DialogUtil.showError(this, "Pilih data terlebih dahulu");
             return;
         }
 
-        boolean confirmed = DialogUtil.showConfirm(
+
+        dialog.setOnSave(() -> {
+
+            boolean confirmed = DialogUtil.showConfirm(
+                this,
+                "Yakin ingin memperbarui data?"
+            );
+
+            if (!confirmed) {
+                return;
+            }
+
+            Map<String, String> values = dialog.getFormValues();
+
+            String valuesNamaSungai = values.get("Nama Sungai");
+            String valuesKategori = values.get("Kategori");
+            String valuesStatus = values.get("Status");
+
+            // JAKARTA VALIDATION
+            this.sungaiEditRequest.setNamaSungai(valuesNamaSungai);
+            this.sungaiEditRequest.setKategori(valuesKategori);
+            this.sungaiEditRequest.setStatus(valuesStatus);
+
+            this.sungaiEditErrors = GlobalExceptionHandler.handleValidation(this.sungaiEditRequest);
+                if (!this.sungaiEditErrors.isEmpty()) {
+                    // JIKA ADA ERROR: tampilkan ke UI
+                    DialogUtil.showError(null, "Gagal memproses data! Silakan perbaiki input Anda.");
+                    
+                    if (this.sungaiEditErrors.containsKey("namaSungai")) {
+                        DialogUtil.showError(null, "Error Nama Sungai: " + this.sungaiEditErrors.get("namaSungai"));
+                    }
+                    if (this.sungaiEditErrors.containsKey("status")) {
+                        DialogUtil.showError(null, "Error Status: " + this.sungaiEditErrors.get("status"));
+                    }
+
+                    return;
+                } else {
+                    // JIKA AMAN: Lanjutkan proses Register
+                    DialogUtil.showSuccess(null, "Input valid! Menghubungkan ke database...");
+                }
+
+            Object[] row = new Object[] {
+                    dummyData.size() + 1,
+                    valuesNamaSungai,
+                    valuesKategori,
+                    valuesStatus,
+            };
+
+            dummyData.set(selectedRow, row);
+
+            tableModel.setRows(dummyData);
+
+            DialogUtil.showSuccess(dialog, "Data berhasil diperbarui");
+
+            dialog.dispose();
+        });
+
+        dialog.setVisible(true);
+    }
+
+    private void deleteSelectedData() {
+
+        try {
+            // Return -1 if no row selected, triggering indexoutofbound exception
+            int selectedRow = table.getSelectedRow();
+
+            // This trigger IndexOutOfBound exception
+            Object[] data = tableModel.getRow(selectedRow);
+
+            boolean confirmed = DialogUtil.showConfirm(
                 this,
                 "Yakin ingin menghapus data?"
-        );
+            );
 
-        if (!confirmed) {
+            if (!confirmed) {
+                return;
+            }
+
+            dummyData.remove(selectedRow);
+
+            tableModel.setRows(dummyData);
+        } catch (IndexOutOfBoundsException e) {
+            
+            DialogUtil.showError(this, "Pilih data terlebih dahulu");
             return;
         }
+    }
 
-        dummyData.remove(selectedRow);
+    private void refreshTable() {
 
+        table.clearSelection();
         tableModel.setRows(dummyData);
     }
 }

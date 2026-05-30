@@ -20,11 +20,13 @@ public class BaseCrudPanel extends JPanel {
     protected JButton refreshButton;
 
     protected JTextField searchField;
+    protected JButton searchButton;
 
     private Runnable onAdd;
     private Runnable onEdit;
     private Runnable onDelete;
     private Runnable onRefresh;
+    private Runnable onSearch;
 
     public BaseCrudPanel() {
         initializeComponents();
@@ -42,6 +44,7 @@ public class BaseCrudPanel extends JPanel {
         refreshButton = new JButton("Refresh");
 
         searchField = new JTextField(20);
+        searchButton = new JButton("Search");
     }
 
     private void initializeLayout() {
@@ -55,6 +58,7 @@ public class BaseCrudPanel extends JPanel {
         topPanel.add(deleteButton);
         topPanel.add(refreshButton);
         topPanel.add(searchField);
+        topPanel.add(searchButton);
 
         add(topPanel, BorderLayout.NORTH);
 
@@ -88,6 +92,12 @@ public class BaseCrudPanel extends JPanel {
                 onRefresh.run();
             }
         });
+
+        searchButton.addActionListener(e -> {
+            if (onSearch != null) {
+                onSearch.run();
+            }
+        });
     }
 
     /**
@@ -119,5 +129,9 @@ public class BaseCrudPanel extends JPanel {
 
     public void setOnRefresh(Runnable onRefresh) {
         this.onRefresh = onRefresh;
+    }
+
+    public void setOnSearch(Runnable onSearch) {
+        this.onSearch = onSearch;
     }
 }
