@@ -37,6 +37,12 @@ public class GlobalExceptionHandler {
         for (ConstraintViolation<Object> violation : violations) {
             String fieldName = violation.getPropertyPath().toString();
             String errorMessage = violation.getMessage();
+
+            // JIKA error berasal dari method @AssertTrue 
+            if ("atLeastOneFieldNotBlank".equals(fieldName)) {
+                // Ubah menjadi nama field yang diinginkan
+                fieldName = "general"; 
+            }
             
             errors.put(fieldName, errorMessage);
         }
