@@ -7,10 +7,14 @@ public class UserTableModel extends BaseTableModel {
     public UserTableModel() {
 
         super(new String[] {
-                "ID",
-                "Nama",
+                "ID User",
+                "Nama User",
                 "Email",
-                "Role"
+                "Password",
+                "Tanggal Lahir",
+                "Pekerjaan",
+                "Bio",
+                "Domisili",
         });
     }
 }

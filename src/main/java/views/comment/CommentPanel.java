@@ -20,7 +20,7 @@ public class CommentPanel extends BaseCrudPanel {
     private CommentAddRequest commentAddRequest = new CommentAddRequest();
     private Map<String, String> commentAddErrors;
 
-    private CommentEditRequest CommentEditRequest = new CommentEditRequest();
+    private CommentEditRequest commentEditRequest = new CommentEditRequest();
     private Map<String, String> commentEditErrors;
 
 
@@ -170,10 +170,10 @@ public class CommentPanel extends BaseCrudPanel {
             String valuesTanggalDiubah = LocalDate.now().toString();
 
             // JAKARTA VALIDATION
-            this.CommentEditRequest.setIsiKomentar(valuesIsiKomentar);;
-            this.CommentEditRequest.setTanggalModified(valuesTanggalDiubah);
+            this.commentEditRequest.setIsiKomentar(valuesIsiKomentar);;
+            this.commentEditRequest.setTanggalModified(valuesTanggalDiubah);
 
-            this.commentEditErrors = GlobalExceptionHandler.handleValidation(this.CommentEditRequest);
+            this.commentEditErrors = GlobalExceptionHandler.handleValidation(this.commentEditRequest);
                 if (!this.commentEditErrors.isEmpty()) {
                     // JIKA ADA ERROR: tampilkan ke UI
                     DialogUtil.showError(null, "Gagal memproses data! Silakan perbaiki input Anda.");
