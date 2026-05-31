@@ -4,15 +4,21 @@ import java.time.LocalDate;
 
 // Konsep Polimorfisme & Abstraksi (Abstract class induk penampung properti murni)
 public abstract class AbstractComment implements Comment {
+
+
     // Properti statis pelacak jumlah objek
-    protected static int commentCount = 0;
-    
+protected static int commentCount = 0;
+
     // Properti dasar enkapsulasi dengan modifier protected
     protected int commentId;
     protected String commentContent;
     protected LocalDate commentCreatedDate;
     protected LocalDate commentModifiedDate;
     protected String userId;
+
+    // Default constructor for subclasses that will initialize data later
+    protected AbstractComment() {
+    }
 
     // Constructor induk pemegang data instansiasi
     public AbstractComment(int commentId, String commentContent, LocalDate commentCreatedDate, String userId) {
