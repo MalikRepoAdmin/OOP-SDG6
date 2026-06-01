@@ -7,10 +7,15 @@ public class AdminTableModel extends BaseTableModel {
     public AdminTableModel() {
 
         super(new String[] {
-                "ID",
+                "ID Admin",
+                "ID User",
                 "Nama Admin",
                 "Email",
-                "Level"
+                "Password",
+                "Tanggal Lahir",
+                "Pekerjaan",
+                "Bio",
+                "Domisili",
         });
     }
 }

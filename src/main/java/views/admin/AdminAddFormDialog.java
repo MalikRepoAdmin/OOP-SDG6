@@ -12,8 +12,14 @@ public class AdminAddFormDialog extends BaseFormDialog {
                 new String[] {
                         "Nama Admin",
                         "Email",
-                        "Level"
+                        "Password",
+                        "Tanggal Lahir",
+                        "Pekerjaan",
+                        "Bio",
+                        "Domisili"
                 }
         );
+
+        replaceField("Tanggal Lahir", createDateField());
     }
 }

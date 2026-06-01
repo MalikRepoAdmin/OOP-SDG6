@@ -3,7 +3,6 @@
 import database.Database;
 import database.impl.DatabaseMock;
 import entity.Admin;
-import entity.DataBaru;
 import entity.KategoriSungai;
 import entity.StatusSungai;
 import entity.Sungai;
@@ -80,15 +79,6 @@ public class Main {
         System.out.println("Role Admin: " + adminobj.ambilNamaPeranSistem());
         System.out.println("Izin Verifikasi: " + adminobj.periksaIzinVerifikasi());
 
-        DataBaru dbobj = new DataBaru(
-            adminobj.getIdAdmin(),
-            "DB-2026-001",
-            "05-04-2026",
-            "Kondisi air bersih",
-            "Sedang Proses Verifikasi"
-        );
-
-        dbobj.showData();
 
         /*
             OWNERSHIP: AngelisNadia
