@@ -2,7 +2,6 @@ package views.base;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
 /**
  * Reusable CRUD panel.
@@ -26,7 +25,6 @@ public class BaseCrudPanel extends JPanel {
     private Runnable onEdit;
     private Runnable onDelete;
     private Runnable onRefresh;
-    private Runnable onSearch;
 
     public BaseCrudPanel() {
         initializeComponents();
@@ -43,8 +41,6 @@ public class BaseCrudPanel extends JPanel {
         deleteButton = new JButton("Hapus");
         refreshButton = new JButton("Refresh");
 
-        searchField = new JTextField(20);
-        searchButton = new JButton("Search");
     }
 
     private void initializeLayout() {
@@ -57,8 +53,6 @@ public class BaseCrudPanel extends JPanel {
         topPanel.add(editButton);
         topPanel.add(deleteButton);
         topPanel.add(refreshButton);
-        topPanel.add(searchField);
-        topPanel.add(searchButton);
 
         add(topPanel, BorderLayout.NORTH);
 
@@ -93,11 +87,6 @@ public class BaseCrudPanel extends JPanel {
             }
         });
 
-        searchButton.addActionListener(e -> {
-            if (onSearch != null) {
-                onSearch.run();
-            }
-        });
     }
 
     /**
@@ -131,7 +120,4 @@ public class BaseCrudPanel extends JPanel {
         this.onRefresh = onRefresh;
     }
 
-    public void setOnSearch(Runnable onSearch) {
-        this.onSearch = onSearch;
-    }
 }

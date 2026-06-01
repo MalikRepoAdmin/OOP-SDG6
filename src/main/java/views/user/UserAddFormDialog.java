@@ -13,10 +13,13 @@ public class UserAddFormDialog extends BaseFormDialog {
                         "Nama User",
                         "Email",
                         "Password",
+                        "Tanggal Lahir",
                         "Pekerjaan",
                         "Bio",
                         "Domisili"
                 }
         );
+
+        replaceField("Tanggal Lahir", createDateField());
     }
 }

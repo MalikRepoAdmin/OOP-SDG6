@@ -11,10 +11,13 @@ public class UserEditFormDialog extends BaseFormDialog{
                 "Form Edit User",
                 new String[] {
                         "Nama User",
+                        "Tanggal Lahir",
                         "Pekerjaan",
                         "Bio",
                         "Domisili"
                 }
         );
+
+        replaceField("Tanggal Lahir", createDateField());
     }
 }

@@ -14,6 +14,10 @@ public class BaseFormDialog extends JDialog {
 
     private final Map<String, JTextField> fieldMap;
 
+    private final Map<String, JComponent> customFieldMap;
+
+    private JPanel formPanel;
+
     private Runnable onSave;
 
     public BaseFormDialog(
@@ -25,6 +29,7 @@ public class BaseFormDialog extends JDialog {
         super(owner, title, true);
 
         fieldMap = new LinkedHashMap<>();
+        customFieldMap = new LinkedHashMap<>();
 
         initialize(fields);
     }
@@ -33,7 +38,7 @@ public class BaseFormDialog extends JDialog {
 
         setLayout(new BorderLayout(10, 10));
 
-        JPanel formPanel = new JPanel(new GridLayout(fields.length, 2, 10, 10));
+        formPanel = new JPanel(new GridLayout(fields.length, 2, 10, 10));
 
         for (String field : fields) {
 
@@ -88,6 +93,70 @@ public class BaseFormDialog extends JDialog {
         if (field != null) {
             field.setText(value);
         }
+    }
+
+    public JSpinner createDateField() {
+
+        // Add Date input into dialog
+        SpinnerDateModel dateModel = new SpinnerDateModel();
+        JSpinner dateSpinner = new JSpinner(dateModel);
+        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(dateSpinner, "MM/dd/yyyy");
+        dateSpinner.setEditor(dateEditor);
+
+        return dateSpinner;
+    }
+
+    public void replaceField(String fieldName, JComponent replacementComponent) {
+        
+        JTextField oldField = fieldMap.get(fieldName);
+
+        if (oldField == null) {
+            return;
+        }
+
+        Container parent = oldField.getParent();
+        Component[] components = parent.getComponents();
+
+        for (int i = 0; i < components.length; i++) {
+            
+            if (components[i] == oldField) {
+                
+                parent.remove(oldField);
+
+                parent.add(replacementComponent, i);
+
+                break;
+            }
+        }
+
+        parent.revalidate();
+        parent.repaint();
+        pack();
+
+        customFieldMap.put(fieldName, replacementComponent);
+    }
+
+    public Object getCustomFieldValue(String fieldName) {
+
+        JComponent component = customFieldMap.get(fieldName);
+
+        if (component == null) {
+            return null;
+        }
+
+        if (component instanceof JSpinner spinner) {
+            return spinner.getValue();
+        }
+
+        if (component instanceof JComboBox<?> comboBox) {
+            return comboBox.getSelectedItem();
+        }
+
+        if (component instanceof JCheckBox checkBox) {
+            return checkBox.isSelected();
+        }
+
+        return null;
     }
 
     public void setOnSave(Runnable onSave) {

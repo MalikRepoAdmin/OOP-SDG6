@@ -2,13 +2,16 @@ package views.user;
 
 import java.time.LocalDate;
 
-import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 
 public class UserEditRequest {
 
+    @NotBlank(message = "Nama User harus diisi")
     private String namaUser;
 
+    @NotNull(message = "Tanggal Lahir harus diisi")
     @Past(message = "Tanggal Lahir tidak valid, Tanggal lahir harus Masa Lampau")
     private LocalDate tanggalLahir;
 
@@ -19,17 +22,6 @@ public class UserEditRequest {
     private String bio;
 
     private String domisili;
-
-
-    @AssertTrue(message = "Salah Satu Kolom harus diisi")
-	public boolean isAtLeastOneFieldNotBlank() {
-		return 	(this.namaUser != null && !this.namaUser.isBlank()) ||
-                (this.tanggalLahirStr != null && !this.tanggalLahirStr.isBlank()) ||
-                (this.pekerjaan != null && !this.pekerjaan.isBlank()) ||
-                (this.bio != null && !this.bio.isBlank()) ||
-                (this.domisili != null && !this.domisili.isBlank());
-                
-	}
 
 
     public String getNamaUser() {

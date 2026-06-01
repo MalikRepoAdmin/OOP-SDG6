@@ -7,7 +7,9 @@ import views.utils.DialogUtil;
 import views.validator.GlobalExceptionHandler;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -76,20 +78,12 @@ public class UserPanel extends BaseCrudPanel {
 
             Map<String, String> values = dialog.getFormValues();
 
-            // Add Date input into dialog
-            SpinnerDateModel dateModel = new SpinnerDateModel();
-            JSpinner dateSpinner = new JSpinner(dateModel);
-            JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(dateSpinner, "MM/dd/yyyy");
-            dateSpinner.setEditor(dateEditor);
-
-            dialog.add(new JLabel("Tanggal Lahir:"));
-            dialog.add(dateSpinner);
-
-
             String valuesNamaUser = values.get("Nama User");
             String valuesEmail = values.get("Email");
             String valuesPassword = values.get("Password");
-            String valuesTanggalLahir = dateSpinner.getValue().toString();
+
+            Date spinnerDate = (Date) dialog.getCustomFieldValue("Tanggal Lahir");
+            String valuesTanggalLahir = spinnerDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
             String valuesPekerjaan = values.get("Pekerjaan");
             String valuesBio = values.get("Bio");
             String valuesDomisili = values.get("Domisili");
@@ -165,16 +159,6 @@ public class UserPanel extends BaseCrudPanel {
         int selectedRow;
         BaseFormDialog dialog = new UserEditFormDialog();
 
-        // Add Date input into dialog
-        SpinnerDateModel dateModel = new SpinnerDateModel();
-        JSpinner dateSpinner = new JSpinner(dateModel);
-        JSpinner.DateEditor dateEditor = new JSpinner.DateEditor(dateSpinner, "MM/dd/yyyy");
-        dateSpinner.setEditor(dateEditor);
-
-        dialog.add(new JLabel("Tanggal Lahir:"));
-        dialog.add(dateSpinner);
-
-
         // Data Selection Validation
         try {
             // Return -1 if no row selected, triggering indexoutofbound exception
@@ -209,7 +193,9 @@ public class UserPanel extends BaseCrudPanel {
             Map<String, String> values = dialog.getFormValues();
 
             String valuesNamaUser = values.get("Nama User");
-            String valuesTanggalLahir = values.get("Tanggal Lahir");
+
+            Date spinnerDate = (Date) dialog.getCustomFieldValue("Tanggal Lahir");
+            String valuesTanggalLahir = spinnerDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
             String valuesPekerjaan = values.get("Pekerjaan");
             String valuesBio = values.get("Bio");
             String valuesDomisili = values.get("Domisili");
@@ -226,20 +212,20 @@ public class UserPanel extends BaseCrudPanel {
                     // JIKA ADA ERROR: tampilkan ke UI
                     DialogUtil.showError(null, "Gagal memproses data! Silakan perbaiki input Anda.");
                     
-                    if (this.userAddErrors.containsKey("namaUser")) {
-                        DialogUtil.showError(null, "Error Nama User: " + this.userAddErrors.get("namaUser"));
+                    if (this.userEditErrors.containsKey("namaUser")) {
+                        DialogUtil.showError(null, "Error Nama User: " + this.userEditErrors.get("namaUser"));
                     }
-                    if (this.userAddErrors.containsKey("tanggalLahir")) {
-                        DialogUtil.showError(null, "Error Tanggal Lahir: " + this.userAddErrors.get("tanggalLahir"));
+                    if (this.userEditErrors.containsKey("tanggalLahir")) {
+                        DialogUtil.showError(null, "Error Tanggal Lahir: " + this.userEditErrors.get("tanggalLahir"));
                     }
-                    if (this.userAddErrors.containsKey("pekerjaan")) {
-                        DialogUtil.showError(null, "Error Pekerjaan: " + this.userAddErrors.get("pekerjaan"));
+                    if (this.userEditErrors.containsKey("pekerjaan")) {
+                        DialogUtil.showError(null, "Error Pekerjaan: " + this.userEditErrors.get("pekerjaan"));
                     }
-                    if (this.userAddErrors.containsKey("bio")) {
-                        DialogUtil.showError(null, "Error Bio: " + this.userAddErrors.get("bio"));
+                    if (this.userEditErrors.containsKey("bio")) {
+                        DialogUtil.showError(null, "Error Bio: " + this.userEditErrors.get("bio"));
                     }
-                    if (this.userAddErrors.containsKey("domisili")) {
-                        DialogUtil.showError(null, "Error Domisili: " + this.userAddErrors.get("domisili"));
+                    if (this.userEditErrors.containsKey("domisili")) {
+                        DialogUtil.showError(null, "Error Domisili: " + this.userEditErrors.get("domisili"));
                     }
 
                     return;

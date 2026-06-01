@@ -2,13 +2,13 @@ package views.admin;
 
 import views.base.BaseFormDialog;
 
-public class AdminFormDialog extends BaseFormDialog {
+public class AdminAddFormDialog extends BaseFormDialog {
 
-    public AdminFormDialog() {
+    public AdminAddFormDialog() {
 
         super(
                 null,
-                "Form Admin",
+                "Form Tambah Admin",
                 new String[] {
                         "Nama Admin",
                         "Email",

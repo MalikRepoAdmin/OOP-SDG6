@@ -2,25 +2,27 @@ package views.user;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 
 public class UserAddRequest {
     
-    @NotBlank(message = "ID User harus diisi")
 	private String idUser;
 
     @NotBlank(message = "Nama User Harus Diisi")
     private String namaUser;
 
     @NotBlank(message = "Email Harus Diisi")
+    @Email(message = "Format Email tidak valid")
 	private String email;
 
     @NotBlank(message = "Password Harus Diisi")
     private String password;
 
-    @NotBlank(message = "Tanggal Lahir Harus Diisi")
-    @Past(message = "Tanggal Lahir tidak valid, Tanggal lahir tidak boleh hari ini")
+    @NotNull(message = "Tanggal Lahir Harus Diisi")
+    @Past(message = "Tanggal Lahir tidak valid, Tanggal lahir harus masa lampau")
     private LocalDate tanggalLahir;
 
     private String tanggalLahirStr;

@@ -2,7 +2,6 @@ package views;
 
 import views.base.BaseFrame;
 import views.comment.CommentPanel;
-import views.dashboard.DashboardPanel;
 import views.sungai.SungaiPanel;
 import views.user.UserPanel;
 
@@ -47,7 +46,7 @@ public class MainFrame extends BaseFrame {
 
         add(createContentPanel(), BorderLayout.CENTER);
 
-        showPage("dashboard");
+        showPage("sungai");
     }
 
     /**
@@ -63,8 +62,6 @@ public class MainFrame extends BaseFrame {
                 new Dimension(220, 0)
         );
 
-        JButton dashboardButton =
-                new JButton("Dashboard");
 
         JButton sungaiButton =
                 new JButton("Sungai");
@@ -75,13 +72,14 @@ public class MainFrame extends BaseFrame {
         JButton commentButton =
                 new JButton("Comment");
 
-        sidebar.add(dashboardButton);
+        JButton adminButton =
+                new JButton("Admin");
+
         sidebar.add(sungaiButton);
         sidebar.add(userButton);
         sidebar.add(commentButton);
+        sidebar.add(adminButton);
 
-        dashboardButton.addActionListener(e ->
-                showPage("dashboard"));
 
         sungaiButton.addActionListener(e ->
                 showPage("sungai"));
@@ -92,6 +90,9 @@ public class MainFrame extends BaseFrame {
         commentButton.addActionListener(e ->
                 showPage("comment"));
 
+        commentButton.addActionListener(e ->
+                showPage("admin"));
+
         return sidebar;
     }
 
@@ -99,11 +100,6 @@ public class MainFrame extends BaseFrame {
      * Main content pages.
      */
     private JPanel createContentPanel() {
-
-        contentPanel.add(
-                new DashboardPanel(),
-                "dashboard"
-        );
 
         contentPanel.add(
                 new UserPanel(),
@@ -118,6 +114,11 @@ public class MainFrame extends BaseFrame {
         contentPanel.add(
                 new CommentPanel(),
                 "comment"
+        );
+
+        contentPanel.add(
+                new CommentPanel(),
+                "admin"
         );
 
         contentPanel.revalidate();
