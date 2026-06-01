@@ -23,11 +23,11 @@ public class AdminPanel extends BaseCrudPanel {
     private final BaseTableModel tableModel;
     private final List<Object[]> dummyData;
 
-    private UserAddRequest userAddRequest = new UserAddRequest();
-    private Map<String, String> userAddErrors;
+    private AdminAddRequest adminAddRequest = new AdminAddRequest();
+    private Map<String, String> adminAddErrors;
 
-    private UserEditRequest userEditRequest = new UserEditRequest();
-    private Map<String, String> userEditErrors;
+    private AdminEditRequest adminEditRequest = new AdminEditRequest();
+    private Map<String, String> adminEditErrors;
 
     public AdminPanel() {
 
@@ -46,7 +46,7 @@ public class AdminPanel extends BaseCrudPanel {
 
         dummyData.add(new Object[] {
                 1,
-                2,
+                1,
                 "Malik",
                 "malik@gmail.com",
                 "123456",
@@ -72,13 +72,13 @@ public class AdminPanel extends BaseCrudPanel {
 
     private void showAddDialog() {
 
-        BaseFormDialog dialog = new UserAddFormDialog();
+        BaseFormDialog dialog = new AdminAddFormDialog();
 
         dialog.setOnSave(() -> {
 
             Map<String, String> values = dialog.getFormValues();
 
-            String valuesNamaUser = values.get("Nama User");
+            String valuesNamaAdmin = values.get("Nama Admin");
             String valuesEmail = values.get("Email");
             String valuesPassword = values.get("Password");
 
@@ -89,39 +89,39 @@ public class AdminPanel extends BaseCrudPanel {
             String valuesDomisili = values.get("Domisili");
 
             // JAKARTA VALIDATION
-            this.userAddRequest.setNamaUser(valuesNamaUser);
-            this.userAddRequest.setEmail(valuesEmail);
-            this.userAddRequest.setPassword(valuesPassword);
-            this.userAddRequest.setTanggalLahir(valuesTanggalLahir);
-            this.userAddRequest.setPekerjaan(valuesPekerjaan);
-            this.userAddRequest.setBio(valuesBio);
-            this.userAddRequest.setDomisili(valuesDomisili);
+            this.adminAddRequest.setNamaAdmin(valuesNamaAdmin);
+            this.adminAddRequest.setEmail(valuesEmail);
+            this.adminAddRequest.setPassword(valuesPassword);
+            this.adminAddRequest.setTanggalLahir(valuesTanggalLahir);
+            this.adminAddRequest.setPekerjaan(valuesPekerjaan);
+            this.adminAddRequest.setBio(valuesBio);
+            this.adminAddRequest.setDomisili(valuesDomisili);
 
-            this.userAddErrors = GlobalExceptionHandler.handleValidation(this.userAddRequest);
-                if (!this.userAddErrors.isEmpty()) {
+            this.adminAddErrors = GlobalExceptionHandler.handleValidation(this.adminAddRequest);
+                if (!this.adminAddErrors.isEmpty()) {
                     // JIKA ADA ERROR: tampilkan ke UI
                     DialogUtil.showError(null, "Gagal memproses data! Silakan perbaiki input Anda.");
                     
-                    if (this.userAddErrors.containsKey("namaUser")) {
-                        DialogUtil.showError(null, "Error Nama User: " + this.userAddErrors.get("namaUser"));
+                    if (this.adminAddErrors.containsKey("namaAdmin")) {
+                        DialogUtil.showError(null, "Error Nama Admin: " + this.adminAddErrors.get("namaAdmin"));
                     }
-                    if (this.userAddErrors.containsKey("email")) {
-                        DialogUtil.showError(null, "Error Email: " + this.userAddErrors.get("email"));
+                    if (this.adminAddErrors.containsKey("email")) {
+                        DialogUtil.showError(null, "Error Email: " + this.adminAddErrors.get("email"));
                     }
-                    if (this.userAddErrors.containsKey("password")) {
-                        DialogUtil.showError(null, "Error Password: " + this.userAddErrors.get("password"));
+                    if (this.adminAddErrors.containsKey("password")) {
+                        DialogUtil.showError(null, "Error Password: " + this.adminAddErrors.get("password"));
                     }
-                    if (this.userAddErrors.containsKey("tanggalLahir")) {
-                        DialogUtil.showError(null, "Error Tanggal Lahir: " + this.userAddErrors.get("tanggalLahir"));
+                    if (this.adminAddErrors.containsKey("tanggalLahir")) {
+                        DialogUtil.showError(null, "Error Tanggal Lahir: " + this.adminAddErrors.get("tanggalLahir"));
                     }
-                    if (this.userAddErrors.containsKey("pekerjaan")) {
-                        DialogUtil.showError(null, "Error Pekerjaan: " + this.userAddErrors.get("pekerjaan"));
+                    if (this.adminAddErrors.containsKey("pekerjaan")) {
+                        DialogUtil.showError(null, "Error Pekerjaan: " + this.adminAddErrors.get("pekerjaan"));
                     }
-                    if (this.userAddErrors.containsKey("bio")) {
-                        DialogUtil.showError(null, "Error Bio: " + this.userAddErrors.get("bio"));
+                    if (this.adminAddErrors.containsKey("bio")) {
+                        DialogUtil.showError(null, "Error Bio: " + this.adminAddErrors.get("bio"));
                     }
-                    if (this.userAddErrors.containsKey("domisili")) {
-                        DialogUtil.showError(null, "Error Domisili: " + this.userAddErrors.get("domisili"));
+                    if (this.adminAddErrors.containsKey("domisili")) {
+                        DialogUtil.showError(null, "Error Domisili: " + this.adminAddErrors.get("domisili"));
                     }
 
                     return;
@@ -131,7 +131,8 @@ public class AdminPanel extends BaseCrudPanel {
 
             Object[] row = new Object[] {
                     dummyData.size() + 1,
-                    valuesNamaUser,
+                    dummyData.size() + 1,
+                    valuesNamaAdmin,
                     valuesEmail,
                     valuesPassword,
                     valuesTanggalLahir,
@@ -157,7 +158,7 @@ public class AdminPanel extends BaseCrudPanel {
     private void showEditDialog() {
 
         int selectedRow;
-        BaseFormDialog dialog = new UserEditFormDialog();
+        BaseFormDialog dialog = new AdminEditFormDialog();
 
         // Data Selection Validation
         try {
@@ -187,12 +188,13 @@ public class AdminPanel extends BaseCrudPanel {
 
             // Get Values from selected row for Update
             Object valuesIdUser = tableModel.getValueAt(selectedRow, 0);
-            Object valuesEmail = tableModel.getValueAt(selectedRow, 2);
-            Object valuesPassword = tableModel.getValueAt(selectedRow, 3);
+            Object valuesIdAdmin = tableModel.getValueAt(selectedRow, 1);
+            Object valuesEmail = tableModel.getValueAt(selectedRow, 3);
+            Object valuesPassword = tableModel.getValueAt(selectedRow, 4);
 
             Map<String, String> values = dialog.getFormValues();
 
-            String valuesNamaUser = values.get("Nama User");
+            String valuesNamaAdmin = values.get("Nama Admin");
 
             Date spinnerDate = (Date) dialog.getCustomFieldValue("Tanggal Lahir");
             String valuesTanggalLahir = spinnerDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString();
@@ -201,31 +203,31 @@ public class AdminPanel extends BaseCrudPanel {
             String valuesDomisili = values.get("Domisili");
 
             // JAKARTA VALIDATION
-            this.userEditRequest.setNamaUser(valuesNamaUser);
-            this.userEditRequest.setTanggalLahir(valuesTanggalLahir);
-            this.userEditRequest.setPekerjaan(valuesPekerjaan);
-            this.userEditRequest.setBio(valuesBio);
-            this.userEditRequest.setDomisili(valuesDomisili);
+            this.adminEditRequest.setNamaAdmin(valuesNamaAdmin);
+            this.adminEditRequest.setTanggalLahir(valuesTanggalLahir);
+            this.adminEditRequest.setPekerjaan(valuesPekerjaan);
+            this.adminEditRequest.setBio(valuesBio);
+            this.adminEditRequest.setDomisili(valuesDomisili);
 
-            this.userEditErrors = GlobalExceptionHandler.handleValidation(this.userEditRequest);
-                if (!this.userEditErrors.isEmpty()) {
+            this.adminEditErrors = GlobalExceptionHandler.handleValidation(this.adminEditRequest);
+                if (!this.adminEditErrors.isEmpty()) {
                     // JIKA ADA ERROR: tampilkan ke UI
                     DialogUtil.showError(null, "Gagal memproses data! Silakan perbaiki input Anda.");
                     
-                    if (this.userEditErrors.containsKey("namaUser")) {
-                        DialogUtil.showError(null, "Error Nama User: " + this.userEditErrors.get("namaUser"));
+                    if (this.adminEditErrors.containsKey("namaAdmin")) {
+                        DialogUtil.showError(null, "Error Nama Admin: " + this.adminEditErrors.get("namaAdmin"));
                     }
-                    if (this.userEditErrors.containsKey("tanggalLahir")) {
-                        DialogUtil.showError(null, "Error Tanggal Lahir: " + this.userEditErrors.get("tanggalLahir"));
+                    if (this.adminEditErrors.containsKey("tanggalLahir")) {
+                        DialogUtil.showError(null, "Error Tanggal Lahir: " + this.adminEditErrors.get("tanggalLahir"));
                     }
-                    if (this.userEditErrors.containsKey("pekerjaan")) {
-                        DialogUtil.showError(null, "Error Pekerjaan: " + this.userEditErrors.get("pekerjaan"));
+                    if (this.adminEditErrors.containsKey("pekerjaan")) {
+                        DialogUtil.showError(null, "Error Pekerjaan: " + this.adminEditErrors.get("pekerjaan"));
                     }
-                    if (this.userEditErrors.containsKey("bio")) {
-                        DialogUtil.showError(null, "Error Bio: " + this.userEditErrors.get("bio"));
+                    if (this.adminEditErrors.containsKey("bio")) {
+                        DialogUtil.showError(null, "Error Bio: " + this.adminEditErrors.get("bio"));
                     }
-                    if (this.userEditErrors.containsKey("domisili")) {
-                        DialogUtil.showError(null, "Error Domisili: " + this.userEditErrors.get("domisili"));
+                    if (this.adminEditErrors.containsKey("domisili")) {
+                        DialogUtil.showError(null, "Error Domisili: " + this.adminEditErrors.get("domisili"));
                     }
 
                     return;
@@ -236,7 +238,8 @@ public class AdminPanel extends BaseCrudPanel {
 
             Object[] row = new Object[] {
                 valuesIdUser,
-                valuesNamaUser,
+                valuesIdAdmin,
+                valuesNamaAdmin,
                 valuesEmail,
                 valuesPassword,
                 valuesTanggalLahir,

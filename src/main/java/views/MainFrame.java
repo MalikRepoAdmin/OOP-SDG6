@@ -1,5 +1,6 @@
 package views;
 
+import views.admin.AdminPanel;
 import views.base.BaseFrame;
 import views.comment.CommentPanel;
 import views.sungai.SungaiPanel;
@@ -63,6 +64,7 @@ public class MainFrame extends BaseFrame {
         );
 
 
+                
         JButton sungaiButton =
                 new JButton("Sungai");
 
@@ -80,7 +82,6 @@ public class MainFrame extends BaseFrame {
         sidebar.add(commentButton);
         sidebar.add(adminButton);
 
-
         sungaiButton.addActionListener(e ->
                 showPage("sungai"));
 
@@ -90,7 +91,7 @@ public class MainFrame extends BaseFrame {
         commentButton.addActionListener(e ->
                 showPage("comment"));
 
-        commentButton.addActionListener(e ->
+        adminButton.addActionListener(e ->
                 showPage("admin"));
 
         return sidebar;
@@ -117,7 +118,7 @@ public class MainFrame extends BaseFrame {
         );
 
         contentPanel.add(
-                new CommentPanel(),
+                new AdminPanel(),
                 "admin"
         );
 

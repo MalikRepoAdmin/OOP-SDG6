@@ -7,8 +7,8 @@ public class AdminTableModel extends BaseTableModel {
     public AdminTableModel() {
 
         super(new String[] {
-                "ID Admin",
                 "ID User",
+                "ID Admin",
                 "Nama Admin",
                 "Email",
                 "Password",
