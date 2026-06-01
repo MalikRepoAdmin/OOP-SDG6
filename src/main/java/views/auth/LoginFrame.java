@@ -69,8 +69,6 @@ public class LoginFrame extends BaseFrame {
         JButton registerButton =
                 new JButton("Register");
 
-        JButton forgotButton =
-                new JButton("Forgot Password");
 
         panel.add(titleLabel);
 
@@ -88,12 +86,10 @@ public class LoginFrame extends BaseFrame {
 
         panel.add(registerButton);
 
-        panel.add(forgotButton);
 
         initializeActions(
                 loginButton,
-                registerButton,
-                forgotButton
+                registerButton
         );
 
         wrapper.add(panel);
@@ -129,8 +125,7 @@ public class LoginFrame extends BaseFrame {
      */
     private void initializeActions(
             JButton loginButton,
-            JButton registerButton,
-            JButton forgotButton
+            JButton registerButton
     ) {
 
         loginButton.addActionListener(e -> {
@@ -172,13 +167,5 @@ public class LoginFrame extends BaseFrame {
             frame.setVisible(true);
         });
 
-        forgotButton.addActionListener(e -> {
-            dispose();
-
-            ForgotPasswordFrame frame =
-                    new ForgotPasswordFrame();
-
-            frame.setVisible(true);
-        });
     }
 }
