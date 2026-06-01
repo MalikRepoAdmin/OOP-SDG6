@@ -24,24 +24,7 @@ public class Main {
         /*
             OWNERSHIP: MalikRepoAdmin
          */
-        Database newDatabase = new DatabaseMock();
-
-        NewComment newComment = new NewComment(newDatabase);
-        newComment.addComment("Hello, World!", "254311011");
-        newComment.sendComment();
-        newComment.displaySendedComment();
-        newComment.displayComment();
-        newComment.displayCount();
-
-        String commentId = String.valueOf(newComment.getCommentId());
-
-        OldComment oldComment = new OldComment(newDatabase, commentId);
-        oldComment.displayComment();
-        oldComment.updateComment("Good Night, World...");
-        oldComment.sendComment();
-        oldComment.displaySendedComment();
-
-
+        
         // Test Swing UI
         SwingUtilities.invokeLater(() -> {
 
@@ -72,7 +55,7 @@ public class Main {
         /*
             OWNERSHIP: zahrah888
          */
-        Admin adminobj = new Admin(1, "Zahrah Admin", "admin@example.com", "admin123", "ADM001");
+        Admin adminobj = new Admin(1, 1, "Zahrah Admin", "admin@example.com", "admin123", "09-21-2005", "Mahasiswa", "", "Magetan");
 
         System.out.println("\nData Admin:");
         System.out.println("ID Admin: " + adminobj.getIdAdmin());
