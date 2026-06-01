@@ -27,7 +27,7 @@ public class NewComment extends AbstractComment implements ICommentCreator {
         super.commentContent = comment;
 
         try {
-            Integer.parseInt(userId);
+            Integer.valueOf(userId);
             super.userId = userId;
         } catch (NumberFormatException e) {
             System.err.println("Warning! userId must be whole number");
