@@ -1,20 +1,22 @@
 package entity.impl;
 
 import java.time.LocalDate;
+import java.util.Map;
+
 import database.Database;
 import entity.AbstractComment;
 import entity.ICommentUpdater;
 
-import java.util.Map;
-
 // Single Responsibility Principle
 // Dependency Inversion Principle
-public class OldComment  extends AbstractComment implements ICommentUpdater{
+public class OldComment extends AbstractComment implements ICommentUpdater {
+
     private static Map<String, Object> fetchedComment;
     private Database database;
 
     // Constructor
-    public OldComment(Database database, String commentId){
+    public OldComment(Database database, String commentId) {
+        super();
         fetchedComment = database.getOneComment(commentId);
         this.database = database;
 
@@ -28,60 +30,62 @@ public class OldComment  extends AbstractComment implements ICommentUpdater{
     // Interface Segregation Principle: FIXED
     // Unused Method Removed, and Remove the "@Deprecated" Decorator
     @Override
-    public void updateComment(String comment){
+    public void updateComment(String comment) {
         super.commentContent = comment;
         super.commentModifiedDate = addDate();
     }
 
-    private LocalDate addDate(){
+    private LocalDate addDate() {
 
         LocalDate nowDate = LocalDate.now();
         return nowDate;
     }
 
     @Override
-    public void sendComment(){
+    public void sendComment() {
         System.out.println("Sending Updated Comment...");
-        
+
         database.updateTo_komentar(String.valueOf(super.commentId), super.commentContent, super.commentModifiedDate);
     }
 
     // Lisskov Subtitution Principle
     @Override
-    public void displaySendedComment(){
+    public void displaySendedComment() {
         String commentIdString = String.valueOf(commentId);
         Map<String, Object> commentColumn = database.getOneComment(commentIdString);
 
-        System.out.printf("%n"+ "Updated Comment: %n" +
-            "ID User: %s %n"+
-            "ID Comment: %s %n"+
-            "Comment: %s %n"+
-            "Created Date: %s %n"+
-            "Modified Date: %s %n %n",
-            commentColumn.get("id_user"),
-            commentColumn.get("id_komentar"),
-            commentColumn.get("isi_komentar"),
-            commentColumn.get("tgl_dibuat"),
-            commentColumn.get("tgl_modified"));
+        System.out.printf("%n" + "Updated Comment: %n"
+                + "ID User: %s %n"
+                + "ID Comment: %s %n"
+                + "Comment: %s %n"
+                + "Created Date: %s %n"
+                + "Modified Date: %s %n %n",
+                commentColumn.get("id_user"),
+                commentColumn.get("id_komentar"),
+                commentColumn.get("isi_komentar"),
+                commentColumn.get("tgl_dibuat"),
+                commentColumn.get("tgl_modified"));
     }
 
-
     @Override
-    public void displayComment(){
+    public void displayComment() {
         String createdDate = commentCreatedDate.toString();
 
-        System.out.printf("%n"+ "Old Comment: %n" +
-            "ID User: %s %n"+
-            "ID Comment: %s %n"+
-            "Comment: %s %n"+
-            "Created Date: %s %n"+
-            "Modified Date: %s %n %n",
-            userId,commentId,commentContent,createdDate,this.commentModifiedDate);
+        System.out.printf("%n" + "Old Comment: %n"
+                + "ID User: %s %n"
+                + "ID Comment: %s %n"
+                + "Comment: %s %n"
+                + "Created Date: %s %n"
+                + "Modified Date: %s %n %n",
+                userId, commentId, commentContent, createdDate, this.commentModifiedDate);
     }
 
-
     @Override
-    public int getCommentId(){
+    public int getCommentId() {
         return super.commentId;
+    }
+
+    public int getCommentID() {
+        return getCommentId();
     }
 }

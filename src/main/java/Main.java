@@ -22,18 +22,11 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Ini adalah program untuk test project OOP kami!\n\n");
 
-
         /*
             OWNERSHIP: MalikRepoAdmin
          */
-        // Instantiate DatabaseMock
-        // This Database instantiation is based on Interface type to decouple and demonstrate polymorphism
         Database newDatabase = new DatabaseMock();
 
-
-        // NewComment and OldComment constructor depends on interface type Database
-        // we can freely change the database instance into DatabaseMysql easily as a proof of polymorphism
-        // Instantiate NewComment
         NewComment newComment = new NewComment(newDatabase);
         newComment.addComment("Hello, World!", "254311011");
         newComment.sendComment();
@@ -43,7 +36,6 @@ public class Main {
 
         String commentId = String.valueOf(newComment.getCommentId());
 
-        // Instantiate OldComment
         OldComment oldComment = new OldComment(newDatabase, commentId);
         oldComment.displayComment();
         oldComment.updateComment("Good Night, World...");
@@ -60,48 +52,58 @@ public class Main {
             frame.setVisible(true);
         });
 
+        
         /*
             OWNERSHIP: raditCDlk
          */
-        Sungai sungaiobj = new Sungai(1, "citarum", "jawa Barat", new KategoriSungai("aman", "layak pakai"), new StatusSungai(2.0, "Baik"));
-
-        sungaiobj.setId(1);
-        sungaiobj.setNamaSungai("citarum");
-        sungaiobj.setLokasi("jawa Barat");
-        sungaiobj.setKomponenKategori(new KategoriSungai("aman", "layak pakai"));
-        sungaiobj.setKomponenStatus(new StatusSungai(2.0, "Baik"));
+        Sungai sungaiobj = new Sungai(
+            1,
+            "Citarum",
+            "Jawa Barat",
+            new KategoriSungai("Layak Pakai", "Air aman untuk irigasi dan industri ringan"),
+            new StatusSungai(0.75, "BERSIH")
+        );
 
         System.out.println("ID Sungai: " + sungaiobj.getId());
         System.out.println("Nama Sungai: " + sungaiobj.getNamaSungai());
         System.out.println("Lokasi Sungai: " + sungaiobj.getLokasi());
-        System.out.println("Kategori Sungai: " + sungaiobj.getKomponenKategori());
-        System.out.println("Status Sungai: " + sungaiobj.getKomponenStatus());
+        System.out.println("Kategori Sungai: " + sungaiobj.getKomponenKategori().getTingkatanKeamanan());
+        System.out.println("Status Sungai: " + sungaiobj.getKomponenStatus().getKondisiFisikAir());
 
         /*
             OWNERSHIP: zahrah888
          */
-        Admin adminobj = new Admin(2, "Zahrah", "Zahrah@gmail.com", "admin123", "ADM001");
+        Admin adminobj = new Admin(1, "Zahrah Admin", "admin@example.com", "admin123", "ADM001");
 
-        // adminobj.showDataAdmin();
+        System.out.println("\nData Admin:");
+        System.out.println("ID Admin: " + adminobj.getIdAdmin());
+        System.out.println("Role Admin: " + adminobj.ambilNamaPeranSistem());
+        System.out.println("Izin Verifikasi: " + adminobj.periksaIzinVerifikasi());
 
-        DataBaru dbobj = new DataBaru (
-        adminobj.getIdAdmin(), 
-
-        "DB-2026-001", 
-        "05-04-2026", 
-        "Kondisi air bersih", 
-        "Sedang Proses Verifikasi"
-         );
+        DataBaru dbobj = new DataBaru(
+            adminobj.getIdAdmin(),
+            "DB-2026-001",
+            "05-04-2026",
+            "Kondisi air bersih",
+            "Sedang Proses Verifikasi"
+        );
 
         dbobj.showData();
 
         /*
             OWNERSHIP: AngelisNadia
          */
-        User u = new User(1, "Angelis Nasta Nadia", "angelynas@gmail.com", 
-        "12345", "12-08-2005", "Mahasiswa", 
-        "Peduli lingkungan", "Jakarta", "foto.jpg");
-
+        User u = new User(
+            1,
+            "Angelis Nasta Nadia",
+            "angelynas@gmail.com",
+            "12345",
+            "12-08-2005",
+            "Mahasiswa",
+            "Peduli lingkungan",
+            "Jakarta",
+            "foto.jpg"
+        );
 
         System.out.print("\n\n");
         System.out.println("ID User: " + u.getIdUser());
@@ -114,10 +116,20 @@ public class Main {
         System.out.println("Domisili: " + u.getDomisili());
         System.out.println("Foto Profil: " + u.getFotoProfil());
 
-        VerifikasiEmail vE = new VerifikasiEmail(1, "12-08-2026", "12-08-2026", "verified", u);
+        VerifikasiEmail vE = new VerifikasiEmail(
+            1,
+            "05-04-2026",
+            "05-04-2026",
+            "verified",
+            u
+        );
 
-        // vE.tampilkanData();
-
+        System.out.println("\nData Verifikasi Email:");
+        System.out.println("ID Verifikasi: " + vE.getIdVerifikasi());
+        System.out.println("Tanggal Kirim: " + vE.getTanggalKirim());
+        System.out.println("Tanggal Verifikasi: " + vE.getTanggalVerifikasi());
+        System.out.println("Status Email: " + vE.getStatusEmail());
+        System.out.println("Target User: " + vE.getTargetUser().getNama());
     }
 
 }
