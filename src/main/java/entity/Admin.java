@@ -5,15 +5,15 @@ package entity;
 public class Admin extends User implements Verifikator {
     
     // Atribut unik yang hanya dimiliki oleh akun Admin, dibatasi ketat menggunakan modifier private
-    private String idAdmin;
+    private int idAdmin;
     private String logWaktuAktivitas;
 
     // Constructor murni untuk instansiasi objek Admin secara dinamis dari luar kelas
-    public Admin(int idUser, String nama, String email, String password, String idAdmin) {
+    public Admin(int idAdmin, int idUser, String nama, String email, String password, String tanggalLahir, String pekerjaan, String bio, String domisili) {
         
         // super() wajib dipanggil di baris pertama untuk mengirim data kredensial login ke parent (User)
         // Atribut profil warga lainnya sengaja diisi default "-" karena Admin adalah orang yang berbeda
-        super(idUser, nama, email, password, "-", "-", "-", "-", "-");
+        super(idUser, nama, email, password, tanggalLahir, pekerjaan, bio, domisili, "-");
         
         // Inisialisasi variabel internal spesifik milik objek Admin
         this.idAdmin = idAdmin;
@@ -21,12 +21,12 @@ public class Admin extends User implements Verifikator {
     }
 
     // Metode Getter untuk mengambil nilai idAdmin yang terenkapsulasi private
-    public String getIdAdmin() { 
+    public int getIdAdmin() { 
         return idAdmin; 
     }
 
     // Metode Setter untuk memperbarui nilai idAdmin dari luar kelas secara aman
-    public void setIdAdmin(String idAdmin) { 
+    public void setIdAdmin(int idAdmin) { 
         this.idAdmin = idAdmin; 
     }
 

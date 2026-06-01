@@ -1,7 +1,7 @@
 package controller;
 
 import services.SungaiService;
-import model.Sungai;
+import entity.Sungai;
 import java.util.List;
 
 public class SungaiController {
@@ -13,22 +13,22 @@ public class SungaiController {
     }
 
     public void tambahSungai(Sungai sungai) {
-        sungaiService.tambahSungai(sungai);
+        sungaiService.create(sungai);
     }
 
     public List<Sungai> getAllSungai() {
-        return sungaiService.getAllSungai();
+        return sungaiService.getAll();
     }
 
     public Sungai getSungaiById(int id) {
-        return sungaiService.getSungaiById(id);
+        return sungaiService.getById(id);
     }
 
     public boolean updateSungai(int id, Sungai sungai) {
-        return sungaiService.updateSungai(id, sungai);
+        return sungaiService.update(id, sungai);
     }
 
     public boolean deleteSungai(int id) {
-        return sungaiService.deleteSungai(id);
+        return sungaiService.delete(id);
     }
 }
