@@ -1,6 +1,7 @@
-package entity;
+
 
 import database.impl.DatabaseMock;
+import entity.AbstractComment;
 import entity.impl.NewComment;
 import entity.impl.OldComment;
 import org.junit.jupiter.api.BeforeEach;

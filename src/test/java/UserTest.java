@@ -1,8 +1,10 @@
-package entity;
+
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+
+import entity.User;
 
 public class UserTest {
 

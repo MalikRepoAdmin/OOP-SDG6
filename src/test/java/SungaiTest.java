@@ -1,6 +1,11 @@
-package entity;
+
 
 import org.junit.jupiter.api.Test;
+
+import entity.KategoriSungai;
+import entity.StatusSungai;
+import entity.Sungai;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SungaiTest {
