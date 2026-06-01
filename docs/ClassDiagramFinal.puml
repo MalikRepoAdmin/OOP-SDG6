@@ -1,0 +1,201 @@
+@startuml
+
+' --- KONFIGURASI ESTETIKA & TATA LETAK DIAGRAM ---
+skinparam classAttributeIconSize 0
+skinparam monochrome false
+skinparam packageStyle rectangle
+skinparam linetype ortho
+
+package entity {
+
+    ' ==========================================
+    ' 1. KELOMPOK USER & OTORISASI (4 KOMPONEN)
+    ' ==========================================
+    
+    interface Verifikator {
+        + {abstract} String ambilNamaPeranSistem()
+        + {abstract} boolean periksaIzinVerifikasi()
+        + {abstract} void catatWaktuAktivitasTerakhir(String tanggalDanWaktu)
+        + {abstract} String ambilWaktuAktivitasTerakhir()
+    }
+
+    class User {
+        - int idUser
+        - String nama
+        - String email
+        - String password
+        - String tanggalLahir
+        - String pekerjaan
+        - String bio
+        - String domisili
+        - String fotoProfil
+        + User(int idUser, String nama, String email, String password, String tanggalLahir, String pekerjaan, String bio, String domisili, String fotoProfil)
+        + int getIdUser()
+        + void setIdUser(int idUser)
+        + String getNama()
+        + void setNama(String nama)
+        + String getEmail()
+        + void setEmail(String email)
+        + String getPassword()
+        + void setPassword(String password)
+        + String getTanggalLahir()
+        + void setTanggalLahir(String tanggalLahir)
+        + String getPekerjaan()
+        + void setPekerjaan(String pekerjaan)
+        + String getBio()
+        + void setBio(String bio)
+        + String getDomisili()
+        + void setDomisili(String domisili)
+        + String getFotoProfil()
+        + void setFotoProfil(String fotoProfil)
+    }
+
+    class Admin {
+        - String idAdmin
+        - String logWaktuAktivitas
+        + Admin(String idAdmin, int idUser, String nama, String email, String password, String tanggalLahir, String pekerjaan, String bio, String domisili)
+        + String getIdAdmin()
+        + void setIdAdmin(String idAdmin)
+        + String ambilNamaPeranSistem()
+        + boolean periksaIzinVerifikasi()
+        + void catatWaktuAktivitasTerakhir(String tanggalDanWaktu)
+        + String ambilWaktuAktivitasTerakhir()
+    }
+
+    class VerifikasiEmail {
+        - int idVerifikasi
+        - String tanggalKirim
+        - String tanggalVerifikasi
+        - String statusEmail
+        - User targetUser
+        + VerifikasiEmail(int idVerifikasi, String tanggalKirim, String tanggalVerifikasi, String statusEmail, User targetUser)
+        + int getIdVerifikasi()
+        + void setIdVerifikasi(int idVerifikasi)
+        + String getTanggalKirim()
+        + void setTanggalKirim(String tanggalKirim)
+        + String getTanggalVerifikasi()
+        + void setTanggalVerifikasi(String tanggalVerifikasi)
+        + String getStatusEmail()
+        + void setStatusEmail(String statusEmail)
+        + User getTargetUser()
+        + void setTargetUser(User targetUser)
+    }
+
+    ' Relasi Struktural Kelompok User
+    User <|-- Admin : "Inheritance (Is-A)"
+    Verifikator <|.. Admin : "Realization (Implements)"
+    VerifikasiEmail *--> User : "Composition (Has-A)"
+
+    ' ==========================================
+    ' 2. KELOMPOK DOKUMEN & LAPORAN (2 KOMPONEN)
+    ' ==========================================
+    
+    interface DokumenPemantauan {
+        + {abstract} String ambilKodeUnikDokumen()
+        + {abstract} String ambilTanggalPencatatan()
+        + {abstract} String ambilStatusValidasiAkhir()
+        + {abstract} boolean periksaKelayakanBerkas()
+    }
+
+    class Laporan {
+        - String idLaporan
+        - String tanggalPemantauan
+        - String hasilKondisiAir
+        - String statusVerifikasi
+        - KategoriSungai kategoriSungai
+        - StatusSungai statusSungai
+        + Laporan(String idLaporan, String tanggalPemantauan, String hasilKondisiAir, String statusVerifikasi, KategoriSungai kategoriSungai, StatusSungai statusSungai)
+        + KategoriSungai getKategoriSungai()
+        + void setKategoriSungai(KategoriSungai kategoriSungai)
+        + StatusSungai getStatusSungai()
+        + void setStatusSungai(StatusSungai statusSungai)
+    }
+
+    ' Relasi Struktural Kelompok Laporan
+    DokumenPemantauan <|.. Laporan : "Realization (Implements)"
+
+    ' ==========================================
+    ' 3. KELOMPOK SUNGAI & KUALITAS (3 KOMPONEN)
+    ' ==========================================
+    
+    class StatusSungai {
+        - double indeksPencemaran
+        - String kondisiFisikAir
+        + StatusSungai(double indeksPencemaran, String kondisiFisikAir)
+        + double getIndeksPencemaran()
+        + void setIndeksPencemaran(double indeksPencemaran)
+        + String getKondisiFisikAir()
+        + void setKondisiFisikAir(String kondisiFisikAir)
+    }
+
+    class KategoriSungai {
+        - String tingkatanKeamanan
+        - String deskripsiKelayakan
+        + KategoriSungai(String tingkatanKeamanan, String deskripsiKelayakan)
+        + String getTingkatanKeamanan()
+        + void setTingkatanKeamanan(String tingkatanKeamanan)
+        + String getDeskripsiKelayakan()
+        + void setDeskripsiKelayakan(String deskripsiKelayakan)
+    }
+
+    class Sungai {
+        - int id
+        - String namaSungai
+        - String lokasi
+        - KategoriSungai komponenKategori
+        - StatusSungai komponenStatus
+        + Sungai(int id, String namaSungai, String lokasi, KategoriSungai komponenKategori, StatusSungai komponenStatus)
+        + int getId()
+        + void setId(int id)
+        + String getNamaSungai()
+        + void setNamaSungai(String namaSungai)
+        + String getLokasi()
+        + void setLokasi(String lokasi)
+        + KategoriSungai getKomponenKategori()
+        + void setKomponenKategori(KategoriSungai komponenKategori)
+        + StatusSungai getKomponenStatus()
+        + void setKomponenStatus(StatusSungai komponenStatus)
+    }
+
+    ' Relasi Struktural Kelompok Sungai
+    Sungai *--> KategoriSungai : "Has-A"
+    Sungai *--> StatusSungai : "Has-A"
+    Laporan *--> KategoriSungai : "Has-A"
+    Laporan *--> StatusSungai : "Has-A"
+
+    ' ==========================================
+    ' 4. KELOMPOK KOMENTAR & AKSI (4 KOMPONEN)
+    ' ==========================================
+    
+    interface Comment {
+        + {abstract} void sendComment()
+        + {abstract} void displayComment()
+        + {abstract} int getCommentId()
+    }
+
+    interface ICommentCreator {
+        + {abstract} void addComment(String comment, String userId)
+    }
+
+    interface ICommentUpdater {
+        + {abstract} void updateComment(String comment)
+    }
+
+    abstract class AbstractComment {
+        # {static} int commentCount
+        # int commentId
+        # String commentContent
+        # LocalDate commentCreatedDate
+        # LocalDate commentModifiedDate
+        # String userId
+        # AbstractComment()
+        + void displayCount()
+        + {abstract} void displaySendedComment()
+    }
+
+    ' Relasi Struktural Kelompok Comment
+    Comment <|.. AbstractComment : "Realization (Implements)"
+
+}
+
+@endum
