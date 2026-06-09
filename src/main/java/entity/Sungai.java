@@ -3,13 +3,13 @@ package entity;
 // Memenuhi SRP & Has-A Relation: Sungai bertindak sebagai superclass data fisik utama objek pantau
 public class Sungai {
     // Properti dasar identitas fisik sungai
-    private int id;
-    private String namaSungai;
-    private String lokasi;
+    protected int id;
+    protected String namaSungai;
+    protected String lokasi;
     
     // Hubungan Komposisi: Mengaitkan komponen objek murni Kategori dan Status ke dalam Sungai
-    private KategoriSungai komponenKategori;
-    private StatusSungai komponenStatus;
+    protected KategoriSungai komponenKategori;
+    protected StatusSungai komponenStatus;
 
     // Constructor utama penampung parameter teks dan parameter objek relasi murni
     public Sungai(int id, String namaSungai, String lokasi, KategoriSungai komponenKategori, StatusSungai komponenStatus) {
@@ -36,4 +36,10 @@ public class Sungai {
 
     public StatusSungai getKomponenStatus() { return komponenStatus; }
     public void setKomponenStatus(StatusSungai komponenStatus) { this.komponenStatus = komponenStatus; }
+
+
+    public String getFormattedNamaSungai() {
+
+        return String.format("Nama Sungai: %s", namaSungai);
+    }
 }
