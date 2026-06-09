@@ -36,4 +36,20 @@ public class Sungai {
 
     public StatusSungai getKomponenStatus() { return komponenStatus; }
     public void setKomponenStatus(StatusSungai komponenStatus) { this.komponenStatus = komponenStatus; }
+
+    // Method untuk Polimorfisme
+    public void tampilkanDetail() {
+        System.out.println("ID: " + this.id);
+        System.out.println("Nama Sungai: " + this.namaSungai);
+        System.out.println("Lokasi: " + this.lokasi);
+        System.out.println("Kategori: " + this.komponenKategori.getTingkatanKeamanan());
+        System.out.println("Status: " + this.komponenStatus.getKondisiFisikAir());
+
+    // Pastikan kelas KategoriSungai dan StatusSungai memiliki method untuk menampilkan data
+        System.out.println("Kategori: " + this.komponenKategori.getTingkatanKeamanan()); 
+        System.out.println("Status: " + this.komponenStatus.getKondisiFisikAir());
+    }
 }
+
+
+ 

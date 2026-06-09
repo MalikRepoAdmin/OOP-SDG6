@@ -1,19 +1,15 @@
 
 
-import database.Database;
-import database.impl.DatabaseMock;
+import javax.swing.SwingUtilities;
+
 import entity.Admin;
 import entity.KategoriSungai;
 import entity.StatusSungai;
 import entity.Sungai;
+import entity.SungaiMonitoring;
 import entity.User;
 import entity.VerifikasiEmail;
-import entity.impl.NewComment;
-import entity.impl.OldComment;
 import views.auth.LoginFrame;
-
-
-import javax.swing.SwingUtilities;
 
 /// Entry Point
 public class Main {
@@ -62,6 +58,19 @@ public class Main {
         System.out.println("Role Admin: " + adminobj.ambilNamaPeranSistem());
         System.out.println("Izin Verifikasi: " + adminobj.periksaIzinVerifikasi());
 
+        /* PENERAPAN POLIMORFISME
+        */
+      // Objek subclass disimpan ke variabel tipe superclass (Sungai)
+       Sungai sungaiPantau = new SungaiMonitoring(
+       2, 
+       "Sungai Bengawan", 
+       "Solo", 
+       new KategoriSungai("Sedang", "Perlu Pengawasan"), 
+       new StatusSungai(0.5, "CUKUP"), 
+       6.8 // nilai phAir (atribut unik)
+);
+
+       sungaiPantau.tampilkanDetail();
 
         /*
             OWNERSHIP: AngelisNadia
