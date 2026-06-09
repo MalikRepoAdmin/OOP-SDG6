@@ -15,7 +15,8 @@ public class SungaiAddFormDialog extends BaseFormDialog {
                 new String[] {
                         "Nama Sungai",
                         "Kategori",
-                        "Status"
+                        "Status",
+                        "Alasan Prioritas"
                 }
         );
 
