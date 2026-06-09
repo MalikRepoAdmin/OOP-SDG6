@@ -36,4 +36,11 @@ public class Sungai {
 
     public StatusSungai getKomponenStatus() { return komponenStatus; }
     public void setKomponenStatus(StatusSungai komponenStatus) { this.komponenStatus = komponenStatus; }
+
+    public String tampilkanDetail() {
+        return "Sungai [" + id + "] " + namaSungai + " - Lokasi: " + lokasi
+            + ", Kategori: " + komponenKategori.getTingkatanKeamanan()
+            + ", Status: " + komponenStatus.getKondisiFisikAir();
+    
+    }
 }
