@@ -2,6 +2,11 @@
 
 ---
 
+# UPDATE Versi 2.0
+
+Update ini berisi penambahan fitur filtering pada UI untuk menampilkan Sungai yang Diprioritaskan
+
+
 # Tim Pengembang
 
 | Nama | NIM | Peran |
