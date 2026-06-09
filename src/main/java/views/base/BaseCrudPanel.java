@@ -17,6 +17,7 @@ public class BaseCrudPanel extends JPanel {
     protected JButton editButton;
     protected JButton deleteButton;
     protected JButton refreshButton;
+    protected JButton priorityButton;
 
     protected JTextField searchField;
     protected JButton searchButton;
@@ -25,6 +26,7 @@ public class BaseCrudPanel extends JPanel {
     private Runnable onEdit;
     private Runnable onDelete;
     private Runnable onRefresh;
+    private Runnable onPriority;
 
     public BaseCrudPanel() {
         initializeComponents();
@@ -40,6 +42,7 @@ public class BaseCrudPanel extends JPanel {
         editButton = new JButton("Edit");
         deleteButton = new JButton("Hapus");
         refreshButton = new JButton("Refresh");
+        priorityButton = new JButton("Priority Filter");
 
     }
 
@@ -53,6 +56,7 @@ public class BaseCrudPanel extends JPanel {
         topPanel.add(editButton);
         topPanel.add(deleteButton);
         topPanel.add(refreshButton);
+        topPanel.add(priorityButton);
 
         add(topPanel, BorderLayout.NORTH);
 
@@ -87,6 +91,12 @@ public class BaseCrudPanel extends JPanel {
             }
         });
 
+        priorityButton.addActionListener(e -> {
+            if (onPriority != null) {
+                onPriority.run();
+            }
+        });
+
     }
 
     /**
@@ -118,6 +128,10 @@ public class BaseCrudPanel extends JPanel {
 
     public void setOnRefresh(Runnable onRefresh) {
         this.onRefresh = onRefresh;
+    }
+
+    public void setOnPriority(Runnable onPriority) {
+        this.onPriority = onPriority;
     }
 
 }

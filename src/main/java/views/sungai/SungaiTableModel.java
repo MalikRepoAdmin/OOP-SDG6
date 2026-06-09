@@ -10,7 +10,8 @@ public class SungaiTableModel extends BaseTableModel {
                 "ID",
                 "Nama Sungai",
                 "Kategori",
-                "Status"
+                "Status",
+                "Alasan Prioritas"
         });
     }
 }

@@ -21,6 +21,7 @@ public class SungaiPanel extends BaseCrudPanel {
     private final BaseTableModel tableModel;
     private final List<Object[]> dummyData;
 
+
     private SungaiAddRequest sungaiAddRequest = new SungaiAddRequest();
     private Map<String, String> sungaiAddErrors;
 
@@ -47,7 +48,16 @@ public class SungaiPanel extends BaseCrudPanel {
                 1,
                 "Sungai Bengawan Solo",
                 "Utama",
-                "Bersih"
+                "Bersih",
+                "-"
+        });
+
+        dummyData.add(new Object[] {
+                2,
+                "Sungai Madiun",
+                "Utama",
+                "Tercemar",
+                "Dekat pemukiman padat"
         });
 
         tableModel.setRows(dummyData);
@@ -62,6 +72,8 @@ public class SungaiPanel extends BaseCrudPanel {
         setOnDelete(this::deleteSelectedData);
 
         setOnRefresh(this::refreshTable);
+
+        setOnPriority(this::filterData);
     }
 
     private void showAddDialog() {
@@ -75,11 +87,13 @@ public class SungaiPanel extends BaseCrudPanel {
             String valuesNamaSungai = values.get("Nama Sungai");
             String valuesKategori = values.get("Kategori");
             String valuesStatus = values.get("Status");
+            String valuesAlasan = values.get("Alasan Prioritas");
 
             // JAKARTA VALIDATION
             this.sungaiAddRequest.setNamaSungai(valuesNamaSungai);
             this.sungaiAddRequest.setKategori(valuesKategori);
             this.sungaiAddRequest.setStatus(valuesStatus);
+            this.sungaiAddRequest.setAlasanPrioritas(valuesAlasan);
 
             this.sungaiAddErrors = GlobalExceptionHandler.handleValidation(this.sungaiAddRequest);
                 if (!this.sungaiAddErrors.isEmpty()) {
@@ -92,6 +106,10 @@ public class SungaiPanel extends BaseCrudPanel {
                     if (this.sungaiAddErrors.containsKey("status")) {
                         DialogUtil.showError(null, "Error Status: " + this.sungaiAddErrors.get("status"));
                     }
+                    if (this.sungaiAddErrors.containsKey("alasanPrioritas")) {
+                        DialogUtil.showError(null, "Error Alasan Prioritas: " + this.sungaiAddErrors.get("alasanPrioritas"));
+
+                    }
 
                     return;
                 } else {
@@ -103,6 +121,7 @@ public class SungaiPanel extends BaseCrudPanel {
                     valuesNamaSungai,
                     valuesKategori,
                     valuesStatus,
+                    valuesAlasan,
             };
 
             dummyData.add(row);
@@ -155,6 +174,7 @@ public class SungaiPanel extends BaseCrudPanel {
             String valuesNamaSungai = values.get("Nama Sungai");
             String valuesKategori = values.get("Kategori");
             String valuesStatus = values.get("Status");
+            String valuesAlasan = values.get("Alasan Prioritas");
 
             // JAKARTA VALIDATION
             this.sungaiEditRequest.setNamaSungai(valuesNamaSungai);
@@ -229,5 +249,27 @@ public class SungaiPanel extends BaseCrudPanel {
 
         table.clearSelection();
         tableModel.setRows(dummyData);
+    }
+
+    private void filterData() {
+
+        List<Object[]> filteredData = dummyData.stream()
+            .filter(row -> {
+
+                // Column 4 = Alasan Prioritas
+                Object alasanObj = row[4];
+
+                if (alasanObj == null) {
+                    return false;
+                }
+
+                String alasan = alasanObj.toString().trim();
+
+                return !alasan.isEmpty()
+                        && !alasan.equals("-");
+            })
+            .toList();
+
+        tableModel.setRows(filteredData);
     }
 }
